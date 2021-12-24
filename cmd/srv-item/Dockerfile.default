@@ -1,0 +1,33 @@
+ARG DOCKER_REGISTRY=hub-dev.rockontrol.com
+FROM ${DOCKER_REGISTRY}/docker.io/library/golang:1.17-buster AS build-env
+
+# setup private pkg 
+ARG CI_JOB_TOKEN
+ARG GITLAB_HOST=git.querycap.com
+ARG GOPROXY=https://goproxy.cn,direct
+ENV GONOSUMDB=${GITLAB_HOST}/*
+RUN git config --global url.https://gitlab-ci-token:${CI_JOB_TOKEN}@${GITLAB_HOST}/.insteadOf https://${GITLAB_HOST}/
+
+FROM build-env AS builder
+
+WORKDIR /go/src
+COPY ./ ./
+
+# build
+ARG COMMIT_SHA
+RUN make build
+
+# runtime
+FROM ${DOCKER_REGISTRY}/ghcr.io/querycap/distroless/static-debian10:latest
+
+COPY --from=builder /go/src/cmd/srv-item/srv-item /go/bin/srv-item
+
+EXPOSE 80
+COPY --from=builder /go/src/cmd/srv-item/openapi.json /go/bin/openapi.json
+
+ARG PROJECT_NAME
+ARG PROJECT_VERSION
+ENV GOENV=DEV PROJECT_NAME=${PROJECT_NAME} PROJECT_VERSION=${PROJECT_VERSION}
+
+WORKDIR /go/bin
+ENTRYPOINT ["/go/bin/srv-item"]

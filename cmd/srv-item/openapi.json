@@ -1,0 +1,2709 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/item_manager": {
+      "get": {
+        "tags": [
+          "github.com/go-courier/httptransport/openapi"
+        ],
+        "operationId": "OpenAPI",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BytesBuffer"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[ContextCanceled][499000000][ContextCanceled]"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UnknownError][500000000][UnknownError]"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware": {
+      "post": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "新增固件",
+        "operationId": "CreateFirmware",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareCreateReq"
+                  },
+                  {
+                    "x-go-field-name": "CreateReq",
+                    "x-tag-mime": "multipart"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareRspData"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware/info/{firmwareID}": {
+      "get": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "获取固件信息",
+        "operationId": "GetFirmwareInfo",
+        "parameters": [
+          {
+            "name": "firmwareID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "FirmwareID",
+                  "x-tag-name": "firmwareID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmware"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "更新固件信息",
+        "operationId": "UpdateFirmware",
+        "parameters": [
+          {
+            "name": "firmwareID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "FirmwareID",
+                  "x-tag-name": "firmwareID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareCreateInfo"
+                  },
+                  {
+                    "x-go-field-name": "CreateInfo"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware/latest": {
+      "get": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "获取最新固件",
+        "operationId": "GetLatestFirmware",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Version",
+              "x-tag-name": "version,omitempty"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareLatestFirmware"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware/list": {
+      "get": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "固件列表",
+        "operationId": "ListFirmware",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Name",
+              "x-tag-name": "name,omitempty"
+            }
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": 1,
+              "default": "1",
+              "x-go-field-name": "NO",
+              "x-tag-name": "pageNo,omitempty",
+              "x-tag-validate": "@int64[1,]"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": -1,
+              "default": "10",
+              "x-go-field-name": "Size",
+              "x-tag-name": "pageSize,omitempty",
+              "x-tag-validate": "@int64[-1,]"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSort"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "createdAt!asc",
+                    "releaseAt",
+                    "releaseAt!asc",
+                    "major",
+                    "major!asc",
+                    "minor",
+                    "minor!asc",
+                    "revision",
+                    "revision!asc",
+                    "identifier",
+                    "identifier!asc"
+                  ],
+                  "default": "releaseAt",
+                  "x-go-field-name": "Sort",
+                  "x-tag-name": "sort,omitempty",
+                  "x-tag-validate": "@string{createdAt,releaseAt,major,minor,revision,identifier}{,!asc}"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareListRsp"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware/release/{firmwareID}": {
+      "put": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "发布固件",
+        "operationId": "ReleaseFirmware",
+        "parameters": [
+          {
+            "name": "firmwareID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "FirmwareID",
+                  "x-tag-name": "firmwareID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware/revoke_release/{firmwareID}": {
+      "put": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "撤销发布固件",
+        "operationId": "RevokeReleaseFirmware",
+        "parameters": [
+          {
+            "name": "firmwareID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "FirmwareID",
+                  "x-tag-name": "firmwareID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/firmware/{firmwareID}": {
+      "delete": {
+        "tags": [
+          "apis/firmware"
+        ],
+        "summary": "删除固件",
+        "operationId": "DeleteFirmware",
+        "parameters": [
+          {
+            "name": "firmwareID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "FirmwareID",
+                  "x-tag-name": "firmwareID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/item": {
+      "post": {
+        "tags": [
+          "apis/items"
+        ],
+        "summary": "创建条目",
+        "operationId": "CreateItem",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItemBase"
+                  },
+                  {
+                    "x-go-field-name": "ItemBase"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/item/info/{code}": {
+      "get": {
+        "tags": [
+          "apis/items"
+        ],
+        "summary": "根据条目代码获取条目信息",
+        "operationId": "GetItemByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Code",
+              "x-tag-name": "code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/item_manager/v0/item/list": {
+      "get": {
+        "tags": [
+          "apis/items"
+        ],
+        "summary": "根据条件获取条目列表",
+        "operationId": "ListItems",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "x-go-field-name": "Codes",
+              "x-tag-name": "code,omitempty"
+            }
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": 1,
+              "default": "1",
+              "x-go-field-name": "NO",
+              "x-tag-name": "pageNo,omitempty",
+              "x-tag-validate": "@int64[1,]"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": -1,
+              "default": "10",
+              "x-go-field-name": "Size",
+              "x-tag-name": "pageSize,omitempty",
+              "x-tag-validate": "@int64[-1,]"
+            }
+          },
+          {
+            "name": "parentCode",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "x-go-field-name": "ParentCodes",
+              "x-tag-name": "parentCode,omitempty"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSort"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "createdAt!asc",
+                    "updatedAt",
+                    "updatedAt!asc"
+                  ],
+                  "default": "createdAt",
+                  "x-go-field-name": "Sort",
+                  "x-tag-name": "sort,omitempty",
+                  "x-tag-validate": "@string{createdAt,updatedAt}{,!asc}"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesItemListRsp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/item_manager/v0/item/list/{code}": {
+      "get": {
+        "tags": [
+          "apis/items"
+        ],
+        "summary": "根据条目代码获取条目及子条目信息",
+        "operationId": "ListItemsByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Code",
+              "x-tag-name": "code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesItemListRsp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/item_manager/v0/item/{code}": {
+      "delete": {
+        "tags": [
+          "apis/items"
+        ],
+        "summary": "删除代码或父级代码为Code的所有条目",
+        "operationId": "DeleteItemByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Code",
+              "x-tag-name": "code"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "apis/items"
+        ],
+        "summary": "根据条目代码更新条目",
+        "operationId": "UpdateItemByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Code",
+              "x-tag-name": "code"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItemBase"
+                  },
+                  {
+                    "x-go-field-name": "ItemBase"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/login": {
+      "post": {
+        "tags": [
+          "apis/users"
+        ],
+        "summary": "用户登陆",
+        "operationId": "Login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesUserLoginReq"
+                  },
+                  {
+                    "x-go-field-name": "LoginReq"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesUserLoginRsp"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/res": {
+      "post": {
+        "tags": [
+          "apis/res"
+        ],
+        "summary": "上传资源",
+        "operationId": "UploadResource",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesResUploadReq"
+                  },
+                  {
+                    "x-go-field-name": "UploadReq",
+                    "x-tag-mime": "multipart"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsRes"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/res/{resID}": {
+      "delete": {
+        "tags": [
+          "apis/res"
+        ],
+        "summary": "根据资源ID删除资源",
+        "operationId": "DeleteResourceByResID",
+        "parameters": [
+          {
+            "name": "resID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "ResID",
+                  "x-tag-name": "resID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "apis/res"
+        ],
+        "summary": "根据资源ID获取资源信息",
+        "operationId": "GetResourceByResID",
+        "parameters": [
+          {
+            "name": "resID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+                },
+                {
+                  "x-go-field-name": "ResID",
+                  "x-tag-name": "resID"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsRes"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/user": {
+      "get": {
+        "tags": [
+          "apis/users"
+        ],
+        "summary": "用户列表",
+        "operationId": "ListUsers",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": 1,
+              "default": "1",
+              "x-go-field-name": "NO",
+              "x-tag-name": "pageNo,omitempty",
+              "x-tag-validate": "@int64[1,]"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": -1,
+              "default": "10",
+              "x-go-field-name": "Size",
+              "x-tag-name": "pageSize,omitempty",
+              "x-tag-validate": "@int64[-1,]"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSort"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "createdAt!asc",
+                    "updatedAt",
+                    "updatedAt!asc"
+                  ],
+                  "default": "createdAt",
+                  "x-go-field-name": "Sort",
+                  "x-tag-name": "sort,omitempty",
+                  "x-tag-validate": "@string{createdAt,updatedAt}{,!asc}"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesUserListRsp"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "apis/users"
+        ],
+        "summary": "创建用户",
+        "operationId": "CreateUser",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsUserBase"
+                  },
+                  {
+                    "x-go-field-name": "UserBase"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/user/logout": {
+      "post": {
+        "tags": [
+          "apis/users"
+        ],
+        "summary": "用户登出",
+        "operationId": "Logout",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/user/modify_password": {
+      "put": {
+        "tags": [
+          "apis/users"
+        ],
+        "summary": "更新当前用户密码",
+        "operationId": "UpdatePassword",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesUserUpdatePasswordReq"
+                  },
+                  {
+                    "x-go-field-name": "UpdatePasswordReq"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    },
+    "/item_manager/v0/user/{username}": {
+      "delete": {
+        "tags": [
+          "apis/users"
+        ],
+        "summary": "根据用户名删除用户信息",
+        "operationId": "DeleteByUsername",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "x-go-field-name": "Username",
+              "x-tag-name": "username"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BytesBuffer": {
+        "type": "string",
+        "format": "binary",
+        "x-go-vendor-type": "bytes.Buffer",
+        "x-id": "BytesBuffer"
+      },
+      "GitQuerycapComToolsDatatypesSFID": {
+        "type": "string",
+        "format": "snowflake-id",
+        "x-go-vendor-type": "git.querycap.com/tools/datatypes.SFID",
+        "x-id": "GitQuerycapComToolsDatatypesSFID"
+      },
+      "GitQuerycapComToolsDatatypesSort": {
+        "type": "string",
+        "format": "sort-rule",
+        "x-go-vendor-type": "git.querycap.com/tools/datatypes.Sort",
+        "x-id": "GitQuerycapComToolsDatatypesSort"
+      },
+      "GithubComDgrijalvaJwtGoStandardClaims": {
+        "type": "object",
+        "properties": {
+          "aud": {
+            "type": "string",
+            "x-go-field-name": "Audience",
+            "x-tag-json": "aud,omitempty"
+          },
+          "exp": {
+            "type": "integer",
+            "format": "int64",
+            "x-go-field-name": "ExpiresAt",
+            "x-tag-json": "exp,omitempty"
+          },
+          "iat": {
+            "type": "integer",
+            "format": "int64",
+            "x-go-field-name": "IssuedAt",
+            "x-tag-json": "iat,omitempty"
+          },
+          "iss": {
+            "type": "string",
+            "x-go-field-name": "Issuer",
+            "x-tag-json": "iss,omitempty"
+          },
+          "jti": {
+            "type": "string",
+            "x-go-field-name": "Id",
+            "x-tag-json": "jti,omitempty"
+          },
+          "nbf": {
+            "type": "integer",
+            "format": "int64",
+            "x-go-field-name": "NotBefore",
+            "x-tag-json": "nbf,omitempty"
+          },
+          "sub": {
+            "type": "string",
+            "x-go-field-name": "Subject",
+            "x-tag-json": "sub,omitempty"
+          }
+        },
+        "description": "Structured version of Claims Section, as referenced at\nhttps://tools.ietf.org/html/rfc7519#section-4.1\nSee examples for how to use this with your own claim types",
+        "x-go-vendor-type": "github.com/dgrijalva/jwt-go.StandardClaims",
+        "x-id": "GithubComDgrijalvaJwtGoStandardClaims"
+      },
+      "GithubComGoCourierSqlxV2DatatypesBool": {
+        "type": "boolean",
+        "x-go-vendor-type": "github.com/go-courier/sqlx/v2/datatypes.Bool",
+        "x-id": "GithubComGoCourierSqlxV2DatatypesBool"
+      },
+      "GithubComGoCourierSqlxV2DatatypesTimestamp": {
+        "type": "string",
+        "format": "date-time",
+        "x-go-vendor-type": "github.com/go-courier/sqlx/v2/datatypes.Timestamp",
+        "x-id": "GithubComGoCourierSqlxV2DatatypesTimestamp"
+      },
+      "GithubComGoCourierStatuserrorErrorField": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "field path\nprop.slice[2].a",
+            "x-go-field-name": "Field",
+            "x-tag-json": "field",
+            "x-tag-xml": "field"
+          },
+          "in": {
+            "type": "string",
+            "description": "location\neq. body, query, header, path, formData",
+            "x-go-field-name": "In",
+            "x-tag-json": "in",
+            "x-tag-xml": "in"
+          },
+          "msg": {
+            "type": "string",
+            "description": "msg",
+            "x-go-field-name": "Msg",
+            "x-tag-json": "msg",
+            "x-tag-xml": "msg"
+          }
+        },
+        "required": [
+          "field",
+          "msg",
+          "in"
+        ],
+        "x-go-vendor-type": "github.com/go-courier/statuserror.ErrorField",
+        "x-id": "GithubComGoCourierStatuserrorErrorField"
+      },
+      "GithubComGoCourierStatuserrorErrorFields": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GithubComGoCourierStatuserrorErrorField"
+        },
+        "x-go-vendor-type": "github.com/go-courier/statuserror.ErrorFields",
+        "x-id": "GithubComGoCourierStatuserrorErrorFields"
+      },
+      "GithubComGoCourierStatuserrorStatusErr": {
+        "type": "object",
+        "properties": {
+          "canBeTalkError": {
+            "type": "boolean",
+            "description": "can be task error\nfor client to should error msg to end user",
+            "x-go-field-name": "CanBeTalkError",
+            "x-tag-json": "canBeTalkError",
+            "x-tag-xml": "canBeTalkError"
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "description": "http code",
+            "x-go-field-name": "Code",
+            "x-tag-json": "code",
+            "x-tag-xml": "code"
+          },
+          "desc": {
+            "type": "string",
+            "description": "desc of err",
+            "x-go-field-name": "Desc",
+            "x-tag-json": "desc",
+            "x-tag-xml": "desc"
+          },
+          "errorFields": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComGoCourierStatuserrorErrorFields"
+              },
+              {
+                "description": "error in where fields",
+                "x-go-field-name": "ErrorFields",
+                "x-tag-json": "errorFields",
+                "x-tag-xml": "errorFields"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "request ID or other request context",
+            "x-go-field-name": "ID",
+            "x-tag-json": "id",
+            "x-tag-xml": "id"
+          },
+          "key": {
+            "type": "string",
+            "description": "key of err",
+            "x-go-field-name": "Key",
+            "x-tag-json": "key",
+            "x-tag-xml": "key"
+          },
+          "msg": {
+            "type": "string",
+            "description": "msg of err",
+            "x-go-field-name": "Msg",
+            "x-tag-json": "msg",
+            "x-tag-xml": "msg"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "error tracing",
+            "x-go-field-name": "Sources",
+            "x-tag-json": "sources",
+            "x-tag-xml": "sources"
+          }
+        },
+        "required": [
+          "key",
+          "code",
+          "msg",
+          "desc",
+          "canBeTalkError",
+          "id",
+          "sources",
+          "errorFields"
+        ],
+        "x-go-vendor-type": "github.com/go-courier/statuserror.StatusErr",
+        "x-id": "GithubComGoCourierStatuserrorStatusErr"
+      },
+      "GithubComSaitofunItemsPkgEnumsResType": {
+        "type": "string",
+        "enum": [
+          "DOC",
+          "PDF",
+          "IMAGE",
+          "VIDEO",
+          "APK"
+        ],
+        "x-enum-labels": [
+          ".doc",
+          ".pdf",
+          ".jpeg,.jpg,.png...",
+          ".mp4",
+          ".apk"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/enums.ResType",
+        "x-id": "GithubComSaitofunItemsPkgEnumsResType"
+      },
+      "GithubComSaitofunItemsPkgModelsFirmware": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsPrimaryID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmwareRef"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsResRef"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmwareVersion"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmwareBase"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmwareRelease"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsOperationTimes"
+          },
+          {
+            "type": "object",
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/models.Firmware",
+            "x-id": "GithubComSaitofunItemsPkgModelsFirmware"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModelsFirmwareBase": {
+        "type": "object",
+        "properties": {
+          "desc": {
+            "type": "string",
+            "description": "固件描述",
+            "x-go-field-name": "Desc",
+            "x-tag-json": "desc,omitempty"
+          },
+          "name": {
+            "type": "string",
+            "description": "固件名称",
+            "x-go-field-name": "Name",
+            "x-tag-json": "name"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.FirmwareBase",
+        "x-id": "GithubComSaitofunItemsPkgModelsFirmwareBase"
+      },
+      "GithubComSaitofunItemsPkgModelsFirmwareRef": {
+        "type": "object",
+        "properties": {
+          "firmwareID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+              },
+              {
+                "description": "固件ID",
+                "x-go-field-name": "FirmwareID",
+                "x-tag-json": "firmwareID"
+              }
+            ]
+          }
+        },
+        "required": [
+          "firmwareID"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.FirmwareRef",
+        "x-id": "GithubComSaitofunItemsPkgModelsFirmwareRef"
+      },
+      "GithubComSaitofunItemsPkgModelsFirmwareRelease": {
+        "type": "object",
+        "properties": {
+          "releaseAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
+              },
+              {
+                "description": "发布时间",
+                "x-go-field-name": "ReleaseAt",
+                "x-tag-json": "releaseAt,omitempty"
+              }
+            ]
+          }
+        },
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.FirmwareRelease",
+        "x-id": "GithubComSaitofunItemsPkgModelsFirmwareRelease"
+      },
+      "GithubComSaitofunItemsPkgModelsFirmwareVersion": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "修饰符",
+            "x-go-field-name": "Identifier",
+            "x-tag-json": "identifier,omitempty"
+          },
+          "major": {
+            "type": "integer",
+            "format": "uint64",
+            "description": "主版本号",
+            "x-go-field-name": "Major",
+            "x-tag-json": "major,omitempty"
+          },
+          "minor": {
+            "type": "integer",
+            "format": "uint64",
+            "description": "次版本号",
+            "x-go-field-name": "Minor",
+            "x-tag-json": "minor,omitempty"
+          },
+          "patch": {
+            "type": "integer",
+            "format": "uint64",
+            "description": "修订号",
+            "x-go-field-name": "Patch",
+            "x-tag-json": "patch,omitempty"
+          }
+        },
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.FirmwareVersion",
+        "x-id": "GithubComSaitofunItemsPkgModelsFirmwareVersion"
+      },
+      "GithubComSaitofunItemsPkgModelsItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsPrimaryID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItemRef"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItemBase"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsOperationTimes"
+          },
+          {
+            "type": "object",
+            "description": "Item 条目信息",
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/models.Item",
+            "x-id": "GithubComSaitofunItemsPkgModelsItem"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModelsItemBase": {
+        "type": "object",
+        "properties": {
+          "alphabetEN": {
+            "type": "string",
+            "description": "条目英文",
+            "x-go-field-name": "AlphabetEN",
+            "x-tag-json": "alphabetEN,omitempty"
+          },
+          "alphabetZH": {
+            "type": "string",
+            "description": "条目中文拼音",
+            "x-go-field-name": "AlphabetZH",
+            "x-tag-json": "alphabetZH,omitempty"
+          },
+          "attachResID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+              },
+              {
+                "description": "条目附件资源ID",
+                "x-go-field-name": "AttachResID",
+                "x-tag-json": "attachResID,omitempty"
+              }
+            ]
+          },
+          "code": {
+            "type": "string",
+            "description": "条目代码",
+            "x-go-field-name": "Code",
+            "x-tag-json": "code"
+          },
+          "hasSub": {
+            "type": "boolean",
+            "description": "是否有下一级条目",
+            "x-go-field-name": "HasSub",
+            "x-tag-json": "hasSub,omitempty"
+          },
+          "imageResID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+              },
+              {
+                "description": "条目icon资源ID",
+                "x-go-field-name": "ImageResID",
+                "x-tag-json": "imageResID,omitempty"
+              }
+            ]
+          },
+          "link": {
+            "type": "string",
+            "description": "条目跳转链接",
+            "x-go-field-name": "Link",
+            "x-tag-json": "link,omitempty"
+          },
+          "name": {
+            "type": "string",
+            "description": "条目名称",
+            "x-go-field-name": "Name",
+            "x-tag-json": "name"
+          },
+          "parentCode": {
+            "type": "string",
+            "description": "条目上级代码",
+            "x-go-field-name": "ParentCode",
+            "x-tag-json": "parentCode,omitempty"
+          },
+          "richText": {
+            "type": "string",
+            "description": "条目富文本",
+            "x-go-field-name": "RichText",
+            "x-tag-json": "richText,omitempty"
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.ItemBase",
+        "x-id": "GithubComSaitofunItemsPkgModelsItemBase"
+      },
+      "GithubComSaitofunItemsPkgModelsItemRef": {
+        "type": "object",
+        "properties": {
+          "itemID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+              },
+              {
+                "description": "条目编号(UUID)",
+                "x-go-field-name": "ItemID",
+                "x-tag-json": "itemID"
+              }
+            ]
+          }
+        },
+        "required": [
+          "itemID"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.ItemRef",
+        "x-id": "GithubComSaitofunItemsPkgModelsItemRef"
+      },
+      "GithubComSaitofunItemsPkgModelsOperationTimes": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
+              },
+              {
+                "description": "创建时间",
+                "x-go-field-name": "CreatedAt",
+                "x-tag-json": "createdAt"
+              }
+            ]
+          },
+          "updatedAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
+              },
+              {
+                "description": "更新时间",
+                "x-go-field-name": "UpdatedAt",
+                "x-tag-json": "updatedAt"
+              }
+            ]
+          }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.OperationTimes",
+        "x-id": "GithubComSaitofunItemsPkgModelsOperationTimes"
+      },
+      "GithubComSaitofunItemsPkgModelsPrimaryID": {
+        "type": "object",
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.PrimaryID",
+        "x-id": "GithubComSaitofunItemsPkgModelsPrimaryID"
+      },
+      "GithubComSaitofunItemsPkgModelsRes": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsPrimaryID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsResRef"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsResBase"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsResExt"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsOperationTimes"
+          },
+          {
+            "type": "object",
+            "description": "Res 静态资源",
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/models.Res",
+            "x-id": "GithubComSaitofunItemsPkgModelsRes"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModelsResBase": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "文件名用于回显资源",
+            "x-go-field-name": "Filename",
+            "x-tag-json": "filename"
+          },
+          "info": {
+            "type": "string",
+            "description": "资源描述信息 用于扩展资源信息 如版本号",
+            "x-go-field-name": "Info",
+            "x-tag-json": "info,omitempty"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComSaitofunItemsPkgEnumsResType"
+              },
+              {
+                "description": "资源类型",
+                "x-go-field-name": "Type",
+                "x-tag-json": "type"
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "filename"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.ResBase",
+        "x-id": "GithubComSaitofunItemsPkgModelsResBase"
+      },
+      "GithubComSaitofunItemsPkgModelsResExt": {
+        "type": "object",
+        "properties": {
+          "md5": {
+            "type": "string",
+            "description": "资源MD5",
+            "x-go-field-name": "Md5",
+            "x-tag-json": "md5"
+          },
+          "url": {
+            "type": "string",
+            "description": "资源访问地址",
+            "x-go-field-name": "URL",
+            "x-tag-json": "url"
+          }
+        },
+        "required": [
+          "url",
+          "md5"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.ResExt",
+        "x-id": "GithubComSaitofunItemsPkgModelsResExt"
+      },
+      "GithubComSaitofunItemsPkgModelsResRef": {
+        "type": "object",
+        "properties": {
+          "resID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+              },
+              {
+                "description": "资源ID",
+                "x-go-field-name": "ResID",
+                "x-tag-json": "resID"
+              }
+            ]
+          }
+        },
+        "required": [
+          "resID"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.ResRef",
+        "x-id": "GithubComSaitofunItemsPkgModelsResRef"
+      },
+      "GithubComSaitofunItemsPkgModelsUser": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsPrimaryID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsUserRef"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsUserBase"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsOperationTimes"
+          },
+          {
+            "type": "object",
+            "description": "User 用户登陆信息",
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/models.User",
+            "x-id": "GithubComSaitofunItemsPkgModelsUser"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModelsUserBase": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "x-go-field-name": "Password",
+            "x-tag-json": "password"
+          },
+          "username": {
+            "type": "string",
+            "x-go-field-name": "Username",
+            "x-tag-json": "username"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.UserBase",
+        "x-id": "GithubComSaitofunItemsPkgModelsUserBase"
+      },
+      "GithubComSaitofunItemsPkgModelsUserRef": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GitQuerycapComToolsDatatypesSFID"
+              },
+              {
+                "description": "用户编号(UUID)",
+                "x-go-field-name": "UserID",
+                "x-tag-json": "userID"
+              }
+            ]
+          }
+        },
+        "required": [
+          "userID"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/models.UserRef",
+        "x-id": "GithubComSaitofunItemsPkgModelsUserRef"
+      },
+      "GithubComSaitofunItemsPkgModulesFirmwareCreateInfo": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmwareBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filename": {
+                "type": "string",
+                "description": "固件文件名",
+                "x-go-field-name": "Filename",
+                "x-tag-json": "filename"
+              },
+              "isRelease": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesBool"
+                  },
+                  {
+                    "description": "是否立即发布(默认立即发布true)",
+                    "x-go-field-name": "IsRelease",
+                    "x-tag-json": "isRelease,omitempty"
+                  }
+                ]
+              },
+              "version": {
+                "type": "string",
+                "description": "版本号(须符合语意版本号规范x.y.z-...)",
+                "x-go-field-name": "Version",
+                "x-tag-json": "version"
+              }
+            },
+            "required": [
+              "filename",
+              "version"
+            ],
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/firmware.CreateInfo",
+            "x-id": "GithubComSaitofunItemsPkgModulesFirmwareCreateInfo"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModulesFirmwareCreateReq": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "x-go-field-name": "File",
+            "x-go-star-level": 1,
+            "x-tag-name": "file"
+          },
+          "info": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareCreateInfo"
+              },
+              {
+                "x-go-field-name": "Info",
+                "x-tag-name": "info"
+              }
+            ]
+          }
+        },
+        "required": [
+          "file",
+          "info"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/firmware.CreateReq",
+        "x-id": "GithubComSaitofunItemsPkgModulesFirmwareCreateReq"
+      },
+      "GithubComSaitofunItemsPkgModulesFirmwareLatestFirmware": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareRspData"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "x-go-field-name": "URL",
+                "x-tag-json": "url"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/firmware.LatestFirmware",
+            "x-id": "GithubComSaitofunItemsPkgModulesFirmwareLatestFirmware"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModulesFirmwareListRsp": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesFirmwareRspData"
+            },
+            "x-go-field-name": "Data",
+            "x-tag-json": "data"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "x-go-field-name": "Total",
+            "x-tag-json": "total"
+          }
+        },
+        "required": [
+          "data",
+          "total"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/firmware.ListRsp",
+        "x-id": "GithubComSaitofunItemsPkgModulesFirmwareListRsp"
+      },
+      "GithubComSaitofunItemsPkgModulesFirmwareRspData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsFirmware"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "md5": {
+                "type": "string",
+                "x-go-field-name": "Md5",
+                "x-tag-json": "md5"
+              },
+              "version": {
+                "type": "string",
+                "x-go-field-name": "Version",
+                "x-tag-json": "version"
+              }
+            },
+            "required": [
+              "md5",
+              "version"
+            ],
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/firmware.RspData",
+            "x-id": "GithubComSaitofunItemsPkgModulesFirmwareRspData"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModulesItemListRsp": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsItem"
+            },
+            "x-go-field-name": "Data",
+            "x-tag-json": "data"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "x-go-field-name": "Total",
+            "x-tag-json": "total"
+          }
+        },
+        "required": [
+          "data",
+          "total"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/item.ListRsp",
+        "x-id": "GithubComSaitofunItemsPkgModulesItemListRsp"
+      },
+      "GithubComSaitofunItemsPkgModulesResUploadReq": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "x-go-field-name": "File",
+            "x-go-star-level": 1,
+            "x-tag-name": "file"
+          },
+          "info": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsResBase"
+              },
+              {
+                "x-go-field-name": "Info",
+                "x-tag-name": "info"
+              }
+            ]
+          }
+        },
+        "required": [
+          "file",
+          "info"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/res.UploadReq",
+        "x-id": "GithubComSaitofunItemsPkgModulesResUploadReq"
+      },
+      "GithubComSaitofunItemsPkgModulesUserJWTClaims": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComDgrijalvaJwtGoStandardClaims"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Password": {
+                "type": "string",
+                "x-go-field-name": "Password"
+              },
+              "Username": {
+                "type": "string",
+                "x-go-field-name": "Username"
+              }
+            },
+            "required": [
+              "Username",
+              "Password"
+            ],
+            "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/user.JWTClaims",
+            "x-id": "GithubComSaitofunItemsPkgModulesUserJWTClaims"
+          }
+        ]
+      },
+      "GithubComSaitofunItemsPkgModulesUserListRsp": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsUser"
+            },
+            "x-go-field-name": "Data",
+            "x-tag-json": "data"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "x-go-field-name": "Total",
+            "x-tag-json": "total"
+          }
+        },
+        "required": [
+          "data",
+          "total"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/user.ListRsp",
+        "x-id": "GithubComSaitofunItemsPkgModulesUserListRsp"
+      },
+      "GithubComSaitofunItemsPkgModulesUserLoginReq": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "x-go-field-name": "Password",
+            "x-tag-json": "password"
+          },
+          "username": {
+            "type": "string",
+            "x-go-field-name": "Username",
+            "x-tag-json": "username"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/user.LoginReq",
+        "x-id": "GithubComSaitofunItemsPkgModulesUserLoginReq"
+      },
+      "GithubComSaitofunItemsPkgModulesUserLoginRsp": {
+        "type": "object",
+        "properties": {
+          "expire": {
+            "type": "integer",
+            "format": "int64",
+            "x-go-field-name": "Expire",
+            "x-tag-json": "expire"
+          },
+          "token": {
+            "type": "string",
+            "x-go-field-name": "Token",
+            "x-tag-json": "token"
+          },
+          "username": {
+            "type": "string",
+            "x-go-field-name": "Username",
+            "x-tag-json": "username"
+          }
+        },
+        "required": [
+          "username",
+          "token",
+          "expire"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/user.LoginRsp",
+        "x-id": "GithubComSaitofunItemsPkgModulesUserLoginRsp"
+      },
+      "GithubComSaitofunItemsPkgModulesUserUpdatePasswordReq": {
+        "type": "object",
+        "properties": {
+          "new": {
+            "type": "string",
+            "x-go-field-name": "NewPassword",
+            "x-tag-json": "new"
+          },
+          "old": {
+            "type": "string",
+            "x-go-field-name": "OldPassword",
+            "x-tag-json": "old"
+          }
+        },
+        "required": [
+          "old",
+          "new"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/user.UpdatePasswordReq",
+        "x-id": "GithubComSaitofunItemsPkgModulesUserUpdatePasswordReq"
+      }
+    }
+  }
+}

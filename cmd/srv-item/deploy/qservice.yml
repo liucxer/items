@@ -1,0 +1,32 @@
+apiVersion: serving.octohelm.tech/v1alpha1
+kind: QService
+metadata:
+  annotations:
+    octohelm.tech/openAPISpecPath: /item
+spec:
+  envs:
+    SRV_ITEM__DB_Host: ${{ SRV_ITEM__DB_Host }}
+    SRV_ITEM__DB_Password: ${{ SRV_ITEM__DB_Password }}
+    SRV_ITEM__DB_SlaveHost: ${{ SRV_ITEM__DB_SlaveHost }}
+    SRV_ITEM__DB_User: ${{ SRV_ITEM__DB_User }}
+    SRV_ITEM__MinioClient_AccessKey: ${{ SRV_ITEM__MinioClient_AccessKey }}
+    SRV_ITEM__MinioClient_Bucket: ${{ SRV_ITEM__MinioClient_Bucket }}
+    SRV_ITEM__MinioClient_Endpoint: ${{ SRV_ITEM__MinioClient_Endpoint }}
+    SRV_ITEM__MinioClient_ExpiredDuration: ${{ SRV_ITEM__MinioClient_ExpiredDuration
+      }}
+    SRV_ITEM__MinioClient_Location: ${{ SRV_ITEM__MinioClient_Location }}
+    SRV_ITEM__MinioClient_SecretKey: ${{ SRV_ITEM__MinioClient_SecretKey }}
+    SRV_ITEM__MinioClient_UseSSL: ${{ SRV_ITEM__MinioClient_UseSSL }}
+    SRV_ITEM__ResPath: ${{ SRV_ITEM__ResPath }}
+    SRV_ITEM__Server_Debug: ${{ SRV_ITEM__Server_Debug }}
+  image: ${{ PROJECT_IMAGE }}
+  livenessProbe:
+    action: http://:80/
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  ports:
+  - "80"
+  readinessProbe:
+    action: http://:80/
+    initialDelaySeconds: 5
+    periodSeconds: 5

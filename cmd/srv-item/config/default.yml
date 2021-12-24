@@ -1,0 +1,14 @@
+GOENV: DEV
+SRV_ITEM__DB_Host: 127.0.0.1
+SRV_ITEM__DB_Password: ""
+SRV_ITEM__DB_SlaveHost: ""
+SRV_ITEM__DB_User: ""
+SRV_ITEM__MinioClient_AccessKey: ""
+SRV_ITEM__MinioClient_Bucket: ""
+SRV_ITEM__MinioClient_Endpoint: ""
+SRV_ITEM__MinioClient_ExpiredDuration: "0"
+SRV_ITEM__MinioClient_Location: ""
+SRV_ITEM__MinioClient_SecretKey: ""
+SRV_ITEM__MinioClient_UseSSL: "false"
+SRV_ITEM__ResPath: ""
+SRV_ITEM__Server_Debug: "true"
