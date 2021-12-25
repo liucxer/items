@@ -45,6 +45,8 @@ func init() {
 	)
 	App.ConfP(config)
 
+	os.MkdirAll(*config.ResPath, 0777)
+
 	confhttp.RegisterCheckerFromStruct(config)
 }
 

@@ -2,15 +2,8 @@ package items
 
 import (
 	"context"
-	"fmt"
-	"io"
-	"mime/multipart"
-	"os"
-	"path"
-	"time"
 
 	"github.com/go-courier/httptransport/httpx"
-	"github.com/google/uuid"
 	"github.com/saitofun/items/pkg/models"
 	"github.com/saitofun/items/pkg/modules/item"
 )
@@ -68,35 +61,4 @@ type DeleteItemByCode struct {
 
 func (r *DeleteItemByCode) Output(ctx context.Context) (interface{}, error) {
 	return nil, item.Controller.DeleteByCode(r.Code)
-}
-
-type UploadBody struct {
-	Format string                `name:"format"` // 文件格式
-	File   *multipart.FileHeader `name:"file"`   // 文件内容
-}
-
-type UploadAttachment struct {
-	httpx.MethodPost
-	UploadBody `in:"body" mime:"multipart"`
-}
-
-func (r *UploadAttachment) Output(ctx context.Context) (interface{}, error) {
-	var (
-		id  = fmt.Sprintf("%s_%d", time.Now().Format("20060102-150405"), uuid.New().ID()) // upload id
-		ret = path.Join("", id+"."+r.Format)                                              // uploaded file
-		src io.ReadCloser
-		dst io.WriteCloser
-		err error
-	)
-
-	if src, err = r.File.Open(); err != nil {
-		return "", err
-	}
-	defer src.Close()
-	if dst, err = os.OpenFile(ret, os.O_CREATE|os.O_RDWR, 0777); err != nil {
-		return "", err
-	}
-	defer dst.Close()
-	_, err = io.Copy(dst, src)
-	return ret, err
 }

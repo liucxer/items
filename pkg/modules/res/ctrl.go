@@ -101,6 +101,7 @@ func (c *Ctrl) Upload(r *UploadReq) (*models.Res, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer os.RemoveAll(filename)
 	md5, err := Md5HashString(filename)
 	if err != nil {
 		return nil, err
