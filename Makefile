@@ -1,4 +1,4 @@
-build: migrate clean
+build: clean
 	mkdir bin
 	go build -mod=vendor ./cmd/srv-item
 	mv srv-item bin/
