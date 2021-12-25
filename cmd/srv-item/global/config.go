@@ -20,10 +20,7 @@ var (
 	ResPath     string
 	MinioClient confminioclient.MinioClient
 
-	App = appinfo.New(
-		appinfo.WithName("srv-item"),
-		appinfo.WithMainRoot(".."),
-	)
+	App *appinfo.AppCtx
 )
 
 func init() {
@@ -40,6 +37,12 @@ func init() {
 		MinioClient: &MinioClient,
 	}
 
+	// pwd, _ := os.Getwd()
+
+	App = appinfo.New(
+		appinfo.WithName("srv-item"),
+		// appinfo.WithMainRoot("."),
+	)
 	App.ConfP(config)
 
 	confhttp.RegisterCheckerFromStruct(config)
