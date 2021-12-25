@@ -22,10 +22,13 @@ require (
 )
 
 require (
+	github.com/NYTimes/gziphandler v1.1.1
 	github.com/go-courier/enumeration v1.3.1
 	github.com/go-courier/semver v1.0.1
 	github.com/minio/minio-go/v6 v6.0.57
+	github.com/rs/cors v1.8.2
 	github.com/shirou/gopsutil v3.21.4+incompatible
+	github.com/spf13/cobra v1.2.1
 )
 
 require (
@@ -54,7 +57,6 @@ require (
 	github.com/openzipkin/zipkin-go v0.2.5 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/spf13/cobra v1.2.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	go.opentelemetry.io/contrib/propagators v0.20.0 // indirect
 	go.opentelemetry.io/otel v0.20.0 // indirect

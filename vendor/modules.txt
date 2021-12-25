@@ -17,6 +17,9 @@ git.querycap.com/tools/scaffold/pkg/envconf
 git.querycap.com/tools/svcutil/confhttp
 git.querycap.com/tools/svcutil/confhttp/middlewares
 git.querycap.com/tools/svcutil/conflogger
+# github.com/NYTimes/gziphandler v1.1.1
+## explicit; go 1.11
+github.com/NYTimes/gziphandler
 # github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d
 ## explicit
 github.com/StackExchange/wmi
@@ -153,6 +156,9 @@ github.com/openzipkin/zipkin-go/model
 # github.com/pkg/errors v0.9.1
 ## explicit
 github.com/pkg/errors
+# github.com/rs/cors v1.8.2
+## explicit; go 1.13
+github.com/rs/cors
 # github.com/saitofun/qlib v0.0.0-20210802105753-362f6d674c45
 ## explicit; go 1.16
 github.com/saitofun/qlib/encoding

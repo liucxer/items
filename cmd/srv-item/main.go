@@ -7,6 +7,7 @@ import (
 	"github.com/go-courier/courier"
 	"github.com/saitofun/items/cmd/srv-item/apis"
 	"github.com/saitofun/items/cmd/srv-item/global"
+	"github.com/saitofun/items/pkg/depends/webappserve"
 )
 
 func main() {
@@ -21,6 +22,11 @@ func main() {
 			BatchRun(
 				func() {
 					courier.Run(apis.Root, global.Server())
+				},
+				func() {
+					if err := webappserve.App.Execute(); err != nil {
+						panic(err)
+					}
 				},
 			)
 		},

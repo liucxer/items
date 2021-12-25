@@ -6,6 +6,7 @@ import (
 	"git.querycap.com/tools/confpostgres"
 	"git.querycap.com/tools/scaffold/pkg/appinfo"
 	"git.querycap.com/tools/svcutil/confhttp"
+	"git.querycap.com/tools/svcutil/conflogger"
 	"github.com/go-courier/courier"
 	"github.com/go-courier/sqlx/v2"
 	"github.com/go-courier/sqlx/v2/migration"
@@ -27,6 +28,7 @@ var (
 
 func init() {
 	var config = &struct {
+		Log         *conflogger.Log
 		Server      *confhttp.Server
 		DB          *confpostgres.Postgres
 		ResPath     *string `env:""`
