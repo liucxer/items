@@ -13,5 +13,6 @@ migrate:
 	go run ./cmd/srv-item/main.go migrate
 
 clean:
-	rm -rf bin
+	rm -rf bin/srv-item
+	rm -rf bin/openapi.json
 
