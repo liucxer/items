@@ -1,10 +1,9 @@
-build: clean
-	mkdir bin
+build:
+	mkdir -p bin
 	go build -mod=vendor ./cmd/srv-item
 	mv srv-item bin/
-	cp -r ./cmd/srv-item/config ./bin
+	#cp -r ./cmd/srv-item/config ./bin
 	cp ./cmd/srv-item/openapi.json ./bin
-	cp -r ./web bin/
 
 run:
 	cd ./cmd/srv-item && go run .
