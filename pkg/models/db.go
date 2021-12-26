@@ -7,7 +7,7 @@ import (
 	"github.com/saitofun/items/pkg/depends"
 )
 
-var DB = sqlx.NewDatabase("item").WithSchema("public")
+var DB = sqlx.NewDatabase("item")
 
 type OperationTimes struct {
 	CreatedAt depends.Timestamp `db:"f_created_at,default='0'" json:"createdAt"` // 创建时间
