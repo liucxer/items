@@ -51,7 +51,7 @@ func (v *MinioClient) Stat(object string) (minio.ObjectInfo, error) {
 	return v.Client.StatObject(v.Bucket, object, minio.StatObjectOptions{})
 }
 
-func (v *MinioClient) GetURL(object string) (string, error) {
+func (v *MinioClient) GetURL(host, object string) (string, error) {
 	_, err := v.Client.StatObject(v.Bucket, object, minio.StatObjectOptions{})
 	if err != nil {
 		return "", err
@@ -60,9 +60,13 @@ func (v *MinioClient) GetURL(object string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	u.Host = host
 	return u.String(), nil
 }
 
 func (v *MinioClient) Delete(object string) error {
 	return v.Client.RemoveObject(v.Bucket, object)
+}
+
+func init() {
 }

@@ -9,6 +9,9 @@ spec:
     SRV_ITEM__DB_Password: ${{ SRV_ITEM__DB_Password }}
     SRV_ITEM__DB_SlaveHost: ${{ SRV_ITEM__DB_SlaveHost }}
     SRV_ITEM__DB_User: ${{ SRV_ITEM__DB_User }}
+    SRV_ITEM__DefaultIface: ${{ SRV_ITEM__DefaultIface }}
+    SRV_ITEM__Log_Level: ${{ SRV_ITEM__Log_Level }}
+    SRV_ITEM__Log_Output: ${{ SRV_ITEM__Log_Output }}
     SRV_ITEM__MinioClient_AccessKey: ${{ SRV_ITEM__MinioClient_AccessKey }}
     SRV_ITEM__MinioClient_Bucket: ${{ SRV_ITEM__MinioClient_Bucket }}
     SRV_ITEM__MinioClient_Endpoint: ${{ SRV_ITEM__MinioClient_Endpoint }}

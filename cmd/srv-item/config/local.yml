@@ -3,6 +3,7 @@ SRV_ITEM__DB_Host: 127.0.0.1
 SRV_ITEM__DB_Password: "sincos"
 SRV_ITEM__DB_SlaveHost: ""
 SRV_ITEM__DB_User: "sincos"
+SRV_ITEM__DefaultIface: "feth2575"
 SRV_ITEM__ResPath: "/Users/sincos/sincos/tmp/item"
 SRV_ITEM__Server_Debug: "true"
 SRV_ITEM__Server_Port: "9999"

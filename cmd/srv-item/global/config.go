@@ -1,6 +1,7 @@
 package global
 
 import (
+	"net"
 	"os"
 
 	"git.querycap.com/tools/confpostgres"
@@ -20,21 +21,25 @@ var (
 	ResPath     string
 	MinioClient confminioclient.MinioClient
 
-	App *appinfo.AppCtx
+	App       *appinfo.AppCtx
+	MinioHost string
+	iface     string
 )
 
 func init() {
 	var config = &struct {
-		Log         *conflogger.Log
-		Server      *confhttp.Server
-		DB          *confpostgres.Postgres
-		ResPath     *string `env:""`
-		MinioClient *confminioclient.MinioClient
+		Log          *conflogger.Log
+		Server       *confhttp.Server
+		DB           *confpostgres.Postgres
+		ResPath      *string `env:""`
+		MinioClient  *confminioclient.MinioClient
+		DefaultIface *string `env:""`
 	}{
-		Server:      server,
-		DB:          database,
-		ResPath:     &ResPath,
-		MinioClient: &MinioClient,
+		Server:       server,
+		DB:           database,
+		ResPath:      &ResPath,
+		MinioClient:  &MinioClient,
+		DefaultIface: &iface,
 	}
 
 	// pwd, _ := os.Getwd()
@@ -48,6 +53,29 @@ func init() {
 	os.MkdirAll(*config.ResPath, 0777)
 
 	confhttp.RegisterCheckerFromStruct(config)
+}
+
+func init() {
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		panic(err)
+	}
+	for _, i := range interfaces {
+		if i.Name == iface {
+			addrs, _ := i.Addrs()
+			if len(addrs) == 0 {
+				panic("addrs[0]")
+			}
+			if va, ok := addrs[0].(*net.IPNet); ok {
+				MinioHost = va.IP.String() + ":9000"
+			} else {
+				panic("not IP net")
+			}
+		}
+	}
+	if MinioHost == "" {
+		panic("host")
+	}
 }
 
 func Server() courier.Transport { return server }

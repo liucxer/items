@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"io"
 	"mime/multipart"
+	"net/url"
 	"os"
 	"path"
 
@@ -132,11 +133,15 @@ func (c *Ctrl) Upload(r *UploadReq) (*models.Res, error) {
 	} else {
 		resID = rcd.ResID
 	}
-	url, err := global.MinioClient.GetURL(resID.String())
+	link, err := global.MinioClient.GetURL(global.MinioHost, resID.String())
 	if err != nil {
 		return nil, err
 	}
-	rcd.URL = url
+	u, err := url.Parse(link)
+	if err != nil {
+		return nil, err
+	}
+	rcd.URL = u.RequestURI()
 	return rcd, nil
 }
 
@@ -146,7 +151,7 @@ func (c *Ctrl) GetByID(id depends.SFID) (*models.Res, error) {
 	if err != nil {
 		return nil, err
 	}
-	url, err := global.MinioClient.GetURL(id.String())
+	url, err := global.MinioClient.GetURL(global.MinioHost, id.String())
 	if err != nil {
 		return nil, err
 	}
