@@ -5,16 +5,15 @@ import (
 	"encoding/hex"
 	"io"
 	"mime/multipart"
-	"net/url"
 	"os"
 	"path"
 
-	"git.querycap.com/ss/srv-aisys/constants/errors"
 	"github.com/go-courier/metax"
 	"github.com/go-courier/sqlx/v2"
 	"github.com/google/uuid"
 	"github.com/saitofun/items/cmd/srv-item/global"
 	"github.com/saitofun/items/pkg/depends"
+	"github.com/saitofun/items/pkg/errors"
 	"github.com/saitofun/items/pkg/models"
 	"github.com/shirou/gopsutil/disk"
 )
@@ -100,12 +99,12 @@ func IsPathExists(path string) bool {
 func (c *Ctrl) Upload(r *UploadReq) (*models.Res, error) {
 	filename, err := Upload(r.File, r.Info.Filename, 100*1024*1024)
 	if err != nil {
-		return nil, err
+		return nil, errors.InternalServerError.WithDes(err)
 	}
 	defer os.RemoveAll(filename)
 	md5, err := Md5HashString(filename)
 	if err != nil {
-		return nil, err
+		return nil, errors.InternalServerError.WithDes(err)
 	}
 
 	rcd := &models.Res{
@@ -121,27 +120,23 @@ func (c *Ctrl) Upload(r *UploadReq) (*models.Res, error) {
 		if sqlx.DBErr(err).IsNotFound() {
 			resID = depends.GenUUID()
 			if err = global.MinioClient.Put(resID.String(), filename); err != nil {
-				return nil, err
+				return nil, errors.UploadStorage.WithDes(err)
 			}
 			rcd.ResID = resID
 			if err = rcd.Create(c.dbe); err != nil {
-				return nil, err
+				return nil, errors.DBError(err)
 			}
 		} else {
-			return nil, err
+			return nil, errors.DBError(err)
 		}
 	} else {
 		resID = rcd.ResID
 	}
-	link, err := global.MinioClient.GetURL(global.MinioHost, resID.String())
+	url, err := global.MinioClient.GetURL(global.MinioHost, resID.String())
 	if err != nil {
-		return nil, err
+		return nil, errors.GetDownloadLink.WithDes(err)
 	}
-	u, err := url.Parse(link)
-	if err != nil {
-		return nil, err
-	}
-	rcd.URL = u.RequestURI()
+	rcd.URL = url
 	return rcd, nil
 }
 
@@ -149,11 +144,11 @@ func (c *Ctrl) GetByID(id depends.SFID) (*models.Res, error) {
 	rcd := &models.Res{ResRef: models.ResRef{ResID: id}}
 	err := rcd.FetchByResID(c.dbe)
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	url, err := global.MinioClient.GetURL(global.MinioHost, id.String())
 	if err != nil {
-		return nil, err
+		return nil, errors.GetDownloadLink.WithDes(err)
 	}
 	rcd.URL = url
 	return rcd, nil
@@ -161,12 +156,24 @@ func (c *Ctrl) GetByID(id depends.SFID) (*models.Res, error) {
 
 func (c *Ctrl) DeleteByID(id depends.SFID) error {
 	rcd := &models.Res{ResRef: models.ResRef{ResID: id}}
-
 	if err := global.MinioClient.Delete(id.String()); err != nil {
-		return err
+		return errors.GetDownloadLink.WithDes(err)
 	}
+	return errors.DBError(rcd.DeleteByResID(c.dbe))
+}
 
-	return rcd.DeleteByResID(c.dbe)
+func (c *Ctrl) List(r *ListReq) (ret *ListRsp, err error) {
+	rcd := &models.Res{}
+	ret = &ListRsp{}
+	ret.Data, err = rcd.List(c.dbe, nil, r.Additions()...)
+	if err != nil {
+		return nil, errors.DBError(err)
+	}
+	ret.Total, err = rcd.Count(c.dbe, nil)
+	if err != nil {
+		return nil, errors.DBError(err)
+	}
+	return
 }
 
 var Controller = &Ctrl{

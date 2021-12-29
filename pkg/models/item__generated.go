@@ -45,19 +45,19 @@ func (Item) UniqueIndexes() github_com_go_courier_sqlx_v2_builder.Indexes {
 
 func (Item) Comments() map[string]string {
 	return map[string]string{
-		"AlphabetEN":    "条目英文",
-		"AlphabetZH":    "条目中文拼音",
-		"AttachmentURL": "条目附件链接",
-		"Code":          "条目代码",
-		"CreatedAt":     "创建时间",
-		"HasSub":        "是否有下一级条目",
-		"ImageURL":      "条目icon",
-		"ItemID":        "条目编号(UUID)",
-		"Link":          "条目跳转链接",
-		"Name":          "条目名称",
-		"ParentCode":    "条目上级代码",
-		"RichText":      "条目",
-		"UpdatedAt":     "更新时间",
+		"AlphabetEN":  "条目英文",
+		"AlphabetZH":  "条目中文拼音",
+		"AttachResID": "条目附件资源ID",
+		"Code":        "条目代码",
+		"CreatedAt":   "创建时间",
+		"HasSub":      "是否有下一级条目",
+		"ImageResID":  "条目icon资源ID",
+		"ItemID":      "条目编号(UUID)",
+		"Link":        "条目跳转链接",
+		"Name":        "条目名称",
+		"ParentCode":  "条目上级代码",
+		"RichText":    "条目富文本",
+		"UpdatedAt":   "更新时间",
 	}
 }
 
@@ -96,8 +96,8 @@ func (Item) ColDescriptions() map[string][]string {
 		"AlphabetZH": []string{
 			"条目中文拼音",
 		},
-		"AttachmentURL": []string{
-			"条目附件链接",
+		"AttachResID": []string{
+			"条目附件资源ID",
 		},
 		"Code": []string{
 			"条目代码",
@@ -108,8 +108,8 @@ func (Item) ColDescriptions() map[string][]string {
 		"HasSub": []string{
 			"是否有下一级条目",
 		},
-		"ImageURL": []string{
-			"条目icon",
+		"ImageResID": []string{
+			"条目icon资源ID",
 		},
 		"ItemID": []string{
 			"条目编号(UUID)",
@@ -124,7 +124,7 @@ func (Item) ColDescriptions() map[string][]string {
 			"条目上级代码",
 		},
 		"RichText": []string{
-			"条目",
+			"条目富文本",
 		},
 		"UpdatedAt": []string{
 			"更新时间",
@@ -188,12 +188,12 @@ func (m *Item) FieldAlphabetEN() *github_com_go_courier_sqlx_v2_builder.Column {
 	return ItemTable.F(m.FieldKeyAlphabetEN())
 }
 
-func (Item) FieldKeyImageURL() string {
-	return "ImageURL"
+func (Item) FieldKeyImageResID() string {
+	return "ImageResID"
 }
 
-func (m *Item) FieldImageURL() *github_com_go_courier_sqlx_v2_builder.Column {
-	return ItemTable.F(m.FieldKeyImageURL())
+func (m *Item) FieldImageResID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return ItemTable.F(m.FieldKeyImageResID())
 }
 
 func (Item) FieldKeyRichText() string {
@@ -212,12 +212,12 @@ func (m *Item) FieldLink() *github_com_go_courier_sqlx_v2_builder.Column {
 	return ItemTable.F(m.FieldKeyLink())
 }
 
-func (Item) FieldKeyAttachmentURL() string {
-	return "AttachmentURL"
+func (Item) FieldKeyAttachResID() string {
+	return "AttachResID"
 }
 
-func (m *Item) FieldAttachmentURL() *github_com_go_courier_sqlx_v2_builder.Column {
-	return ItemTable.F(m.FieldKeyAttachmentURL())
+func (m *Item) FieldAttachResID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return ItemTable.F(m.FieldKeyAttachResID())
 }
 
 func (Item) FieldKeyHasSub() string {

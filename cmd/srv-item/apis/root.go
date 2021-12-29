@@ -23,8 +23,9 @@ func init() {
 	v0.Register(courier.NewRouter(&users.Login{}))
 	v0.Register(auth)
 	v0.Register(items.Root)
+	v0.Register(firmware.Root)
 	auth.Register(users.Root)
 	auth.Register(items.RootAuth)
 	auth.Register(res.Root)
-	auth.Register(firmware.Root)
+	auth.Register(firmware.RootAuth)
 }

@@ -53,12 +53,20 @@ func (v StatusError) Key() string {
 		return "Forbidden"
 	case FirmwareReleased:
 		return "FirmwareReleased"
+	case NotFound:
+		return "NotFound"
+	case Conflict:
+		return "Conflict"
 	case InternalServerError:
 		return "InternalServerError"
 	case DatabaseInternalServerError:
 		return "DatabaseInternalServerError"
 	case GenerateTokenError:
 		return "GenerateTokenError"
+	case UploadStorage:
+		return "UploadStorage"
+	case GetDownloadLink:
+		return "GetDownloadLink"
 	}
 	return "UNKNOWN"
 }
@@ -79,12 +87,20 @@ func (v StatusError) Msg() string {
 		return "Forbidden"
 	case FirmwareReleased:
 		return "固件多次发布"
+	case NotFound:
+		return "NotFound"
+	case Conflict:
+		return "Conflict"
 	case InternalServerError:
 		return "InternalServerError"
 	case DatabaseInternalServerError:
 		return "查询数据库失败"
 	case GenerateTokenError:
 		return "Token生成失败"
+	case UploadStorage:
+		return "存储出错"
+	case GetDownloadLink:
+		return "获取下载链接出错"
 	}
 	return "-"
 }
@@ -105,11 +121,19 @@ func (v StatusError) CanBeTalkError() bool {
 		return true
 	case FirmwareReleased:
 		return true
+	case NotFound:
+		return true
+	case Conflict:
+		return true
 	case InternalServerError:
-		return false
+		return true
 	case DatabaseInternalServerError:
 		return true
 	case GenerateTokenError:
+		return true
+	case UploadStorage:
+		return true
+	case GetDownloadLink:
 		return true
 	}
 	return false

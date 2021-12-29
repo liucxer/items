@@ -28,7 +28,7 @@ func (c *Ctrl) UpdatePassword(username string, r *UpdatePasswordReq) error {
 		return errors.UnmatchedPassword
 	}
 	rcd.Password = r.NewPassword
-	return rcd.UpdateByUsernameWithStruct(c.dbe)
+	return errors.DBError(rcd.UpdateByUsernameWithStruct(c.dbe))
 }
 
 func (c *Ctrl) Login(r *LoginReq) (*LoginRsp, error) {
@@ -39,7 +39,7 @@ func (c *Ctrl) Login(r *LoginReq) (*LoginRsp, error) {
 		exp   = time.Now().Add(time.Hour).Unix()
 	)
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	if r.Password != rcd.Password {
 		return nil, errors.UnmatchedPassword
@@ -63,11 +63,11 @@ func (c *Ctrl) CreateUser(r *models.UserBase) (*models.User, error) {
 	}
 	err := rcd.Create(c.dbe)
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	err = rcd.FetchByUsername(c.dbe)
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	rcd.Password = ""
 	return rcd, nil
@@ -81,25 +81,23 @@ func (c *Ctrl) List(r *ListReq) (*ListRsp, error) {
 	)
 	rsp.Data, err = rcd.List(c.dbe, nil, r.Additions()...)
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	rsp.Total, err = rcd.Count(c.dbe, nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	return rsp, nil
 }
 
 func (c *Ctrl) DeleteByUsername(username string) error {
 	rcd := &models.User{UserBase: models.UserBase{Username: username}}
-	return rcd.DeleteByUsername(c.dbe)
+	return errors.DBError(rcd.DeleteByUsername(c.dbe))
 }
 
 func (c *Ctrl) DeleteByID(id depends.SFID) error {
 	rcd := &models.User{UserRef: models.UserRef{UserID: id}}
-	return rcd.DeleteByUserID(c.dbe)
+	return errors.DBError(rcd.DeleteByUserID(c.dbe))
 }
 
-var Controller = &Ctrl{
-	dbe: global.Database(),
-}
+var Controller = &Ctrl{dbe: global.Database()}

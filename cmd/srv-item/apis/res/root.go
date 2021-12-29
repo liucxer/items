@@ -11,4 +11,5 @@ func init() {
 	Root.Register(courier.NewRouter(&GetResourceByResID{}))
 	Root.Register(courier.NewRouter(&DeleteResourceByResID{}))
 	Root.Register(courier.NewRouter(&UploadResource{}))
+	Root.Register(courier.NewRouter(&ListResources{}))
 }

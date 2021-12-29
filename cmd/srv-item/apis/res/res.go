@@ -34,3 +34,12 @@ type DeleteResourceByResID struct {
 func (r *DeleteResourceByResID) Output(ctx context.Context) (interface{}, error) {
 	return nil, res.Controller.DeleteByID(r.ResID)
 }
+
+type ListResources struct {
+	httpx.MethodGet `summary:"资源列表" path:""`
+	res.ListReq
+}
+
+func (r *ListResources) Output(ctx context.Context) (interface{}, error) {
+	return res.Controller.List(&r.ListReq)
+}

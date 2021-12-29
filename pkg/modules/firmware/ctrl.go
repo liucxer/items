@@ -9,6 +9,7 @@ import (
 	"github.com/go-courier/sqlx/v2/builder"
 	"github.com/saitofun/items/pkg/depends"
 	"github.com/saitofun/items/pkg/enums"
+	"github.com/saitofun/items/pkg/errors"
 	"github.com/saitofun/items/pkg/models"
 	"github.com/saitofun/items/pkg/modules/res"
 )
@@ -53,7 +54,7 @@ func (c *Ctrl) Create(r *CreateReq) (*RspData, error) {
 		},
 	).Do()
 	if err != nil {
-		return nil, err
+		return nil, errors.DBError(err)
 	}
 	return &RspData{
 		Firmware: *pkg,
@@ -70,11 +71,11 @@ func (c *Ctrl) UpdateFirmware(id depends.SFID, info *CreateInfo) error {
 	}
 	if info.IsRelease == depends.T || info.IsRelease == depends.BOOL(0) {
 		pkg.ReleaseAt = depends.Timestamp(time.Now())
-		return pkg.UpdateByFirmwareIDWithStruct(c.dbe,
-			pkg.FieldKeyResID())
+		return errors.DBError(pkg.UpdateByFirmwareIDWithStruct(c.dbe,
+			pkg.FieldKeyResID()))
 	}
-	return pkg.UpdateByFirmwareIDWithStruct(c.dbe,
-		pkg.FieldKeyResID(), pkg.FieldKeyReleaseAt())
+	return errors.DBError(pkg.UpdateByFirmwareIDWithStruct(c.dbe,
+		pkg.FieldKeyResID(), pkg.FieldKeyReleaseAt()))
 }
 
 func (c *Ctrl) Release(id depends.SFID) error {
@@ -87,7 +88,7 @@ func (c *Ctrl) Release(id depends.SFID) error {
 			pkg.FieldKeyReleaseAt(): depends.Timestamp(time.Now()),
 			pkg.FieldKeyUpdatedAt(): depends.Timestamp(time.Now()),
 		})...))
-	return err
+	return errors.DBError(err)
 }
 
 func (c *Ctrl) RevokeRelease(id depends.SFID) error {
