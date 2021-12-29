@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-courier/httptransport/httpx"
 	"github.com/saitofun/items/pkg/depends"
+	"github.com/saitofun/items/pkg/errors"
 	"github.com/saitofun/items/pkg/models"
 	"github.com/saitofun/items/pkg/modules/firmware"
 )
@@ -85,7 +86,7 @@ type CreateFirmware struct {
 func (r *CreateFirmware) Output(ctx context.Context) (interface{}, error) {
 	version, err := models.ParseFirmwareVersion(r.Info.Version)
 	if err != nil {
-		return nil, err
+		return nil, errors.InvalidVersion
 	}
 	r.CreateReq.Info.FirmwareVersion = *version
 	return firmware.Controller.Create(&r.CreateReq)

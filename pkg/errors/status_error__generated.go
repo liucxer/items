@@ -53,6 +53,8 @@ func (v StatusError) Key() string {
 		return "Forbidden"
 	case FirmwareReleased:
 		return "FirmwareReleased"
+	case InvalidVersion:
+		return "InvalidVersion"
 	case NotFound:
 		return "NotFound"
 	case Conflict:
@@ -87,6 +89,8 @@ func (v StatusError) Msg() string {
 		return "Forbidden"
 	case FirmwareReleased:
 		return "固件多次发布"
+	case InvalidVersion:
+		return "版本号不合法"
 	case NotFound:
 		return "NotFound"
 	case Conflict:
@@ -120,6 +124,8 @@ func (v StatusError) CanBeTalkError() bool {
 	case Forbidden:
 		return true
 	case FirmwareReleased:
+		return true
+	case InvalidVersion:
 		return true
 	case NotFound:
 		return true

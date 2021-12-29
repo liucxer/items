@@ -64,6 +64,8 @@ const (
 	Forbidden StatusError = http.StatusForbidden*1e6 + iota + 1
 	// @errTalk 固件多次发布
 	FirmwareReleased
+	// @errTalk 版本号不合法
+	InvalidVersion
 )
 
 const (
@@ -76,7 +78,10 @@ const (
 	Conflict StatusError = http.StatusConflict*1e6 + iota + 1
 )
 
-func DBError(err error) *statuserror.StatusErr {
+func DBError(err error) error {
+	if err == nil {
+		return nil
+	}
 	if sqlx.DBErr(err).IsNotFound() {
 		return NotFound.WithDes()
 	} else if sqlx.DBErr(err).IsConflict() {
