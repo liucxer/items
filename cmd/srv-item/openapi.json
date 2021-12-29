@@ -121,7 +121,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -150,28 +213,6 @@
                 }
               ]
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "x-go-field-name": "Authorization",
-              "x-tag-name": "Authorization,omitempty",
-              "x-tag-validate": "@string[1,]"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "x-go-field-name": "AuthorizationInQuery",
-              "x-tag-name": "authorization,omitempty",
-              "x-tag-validate": "@string[1,]"
-            }
           }
         ],
         "responses": {
@@ -184,19 +225,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
-                }
-              }
-            },
-            "x-status-errors": [
-              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
-            ]
           }
         }
       },
@@ -277,7 +305,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -291,28 +382,6 @@
         "summary": "获取最新固件",
         "operationId": "GetLatestFirmware",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "x-go-field-name": "Authorization",
-              "x-tag-name": "Authorization,omitempty",
-              "x-tag-validate": "@string[1,]"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "x-go-field-name": "AuthorizationInQuery",
-              "x-tag-name": "authorization,omitempty",
-              "x-tag-validate": "@string[1,]"
-            }
-          },
           {
             "name": "version",
             "in": "query",
@@ -344,7 +413,69 @@
               }
             },
             "x-status-errors": [
-              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -358,28 +489,6 @@
         "summary": "固件列表",
         "operationId": "ListFirmware",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "x-go-field-name": "Authorization",
-              "x-tag-name": "Authorization,omitempty",
-              "x-tag-validate": "@string[1,]"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "x-go-field-name": "AuthorizationInQuery",
-              "x-tag-name": "authorization,omitempty",
-              "x-tag-validate": "@string[1,]"
-            }
-          },
           {
             "name": "name",
             "in": "query",
@@ -460,19 +569,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
-                }
-              }
-            },
-            "x-status-errors": [
-              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
-            ]
           }
         }
       }
@@ -538,7 +634,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -737,6 +896,25 @@
               }
             }
           },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[BadRequestError][400999001][]",
+              "@StatusErr[CamElectricFenceInvalid][400999003][电子围栏参数错误]!",
+              "@StatusErr[CamEnableSectionInvalid][400999004][场景分析时段数据错误]!",
+              "@StatusErr[CamLonLatInvalid][400999005][相机经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!",
+              "@StatusErr[OTAInvalidParam][400999002][升级请求参数非法]!",
+              "@StatusErr[SysConfigInvalid][400999007][配置项不合法]!",
+              "@StatusErr[SysConfigLonLatInvalid][400999006][设备经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!"
+            ]
+          },
           "401": {
             "description": "",
             "content": {
@@ -747,7 +925,96 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[UnauthorizedError][401999001][]",
+              "@StatusErr[UserLoginInvalidCaptcha][401999002][验证码错误]!",
+              "@StatusErr[UserLoginInvalidPassword][401999004][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamConfLimited][403999011][摄像机配置达到上限]!",
+              "@StatusErr[CamSceneConfLimited][403999010][场景配置达到上限]!",
+              "@StatusErr[ForbiddenError][403999001][Forbidden]",
+              "@StatusErr[OTABusy][403999002][升级任务忙]!",
+              "@StatusErr[OTADiskLimited][403999003][磁盘不足]!",
+              "@StatusErr[OTAInvalidURL][403999009][无效链接]!",
+              "@StatusErr[OTAInvalidVersion][403999007][低于当前版本]!",
+              "@StatusErr[OTAMaxModelInstall][403999008][可安装达到上限]!",
+              "@StatusErr[OTAMd5Checksum][403999006][md5校验失败]!",
+              "@StatusErr[OTAUnsupportedModel][403999004][证书不支持该模型]!",
+              "@StatusErr[OTAUploadLimited][403999005][上传文件过大]!",
+              "@StatusErr[SysConfigPermissionDenied][403999015][无系统配置权限]!",
+              "@StatusErr[UploadBusy][403999012][上传任务繁忙]!",
+              "@StatusErr[UploadDiskLimited][403999014][上传任务磁盘不足]!",
+              "@StatusErr[UploadFileSizeLimited][403999013][上传文件大小限制]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamNotExists][404999003][摄像头不存在]!",
+              "@StatusErr[DBNotFound][404999002][数据库记录不存在]!",
+              "@StatusErr[NotFoundError][404999001][NotFound]"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DBConflict][409999001][数据库冲突]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamAnalyzeReqError][500999013][分析端请求错误]!",
+              "@StatusErr[DBInternal][500999004][数据库内部错误]!",
+              "@StatusErr[EventResReadFailed][500999005][事件资源读取失败]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]",
+              "@StatusErr[LicenseFileHashFailed][500999017][证书文件哈希失败]!",
+              "@StatusErr[LicenseFileNotExist][500999016][证书文件不存在]!",
+              "@StatusErr[LicenseInstallFailed][500999015][证书安装失败]!",
+              "@StatusErr[LicenseValidateByAnalysis][500999014][证书验证失败]!",
+              "@StatusErr[OTAFetchRemoteFirmware][500999008][获取远端固件资源错误]!",
+              "@StatusErr[OTAHandleUpload][500999007][处理文件上传失败]!",
+              "@StatusErr[OTALicenseValidate][500999006][证书查询失败]!",
+              "@StatusErr[OTAPadModelInfoFailed][500999010][获取模型信息失败]!",
+              "@StatusErr[OTARemoveModelFailed][500999011][移除模型包失败]!",
+              "@StatusErr[OTASubmitFailed][500999009][升级任务提交失败]!",
+              "@StatusErr[OTAUpgradeFailed][500999012][升级失败]!",
+              "@StatusErr[UploadHandleFailed][500999018][上传文件处理失败]!",
+              "@StatusErr[UserLoginGenTokenFailed][500999002][登录验证失败]!",
+              "@StatusErr[UserLoginInvalidUsername][500999003][无效的用户名]!"
             ]
           }
         }
@@ -782,6 +1049,126 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[BadRequestError][400999001][]",
+              "@StatusErr[CamElectricFenceInvalid][400999003][电子围栏参数错误]!",
+              "@StatusErr[CamEnableSectionInvalid][400999004][场景分析时段数据错误]!",
+              "@StatusErr[CamLonLatInvalid][400999005][相机经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!",
+              "@StatusErr[OTAInvalidParam][400999002][升级请求参数非法]!",
+              "@StatusErr[SysConfigInvalid][400999007][配置项不合法]!",
+              "@StatusErr[SysConfigLonLatInvalid][400999006][设备经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!"
+            ]
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UnauthorizedError][401999001][]",
+              "@StatusErr[UserLoginInvalidCaptcha][401999002][验证码错误]!",
+              "@StatusErr[UserLoginInvalidPassword][401999004][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamConfLimited][403999011][摄像机配置达到上限]!",
+              "@StatusErr[CamSceneConfLimited][403999010][场景配置达到上限]!",
+              "@StatusErr[ForbiddenError][403999001][Forbidden]",
+              "@StatusErr[OTABusy][403999002][升级任务忙]!",
+              "@StatusErr[OTADiskLimited][403999003][磁盘不足]!",
+              "@StatusErr[OTAInvalidURL][403999009][无效链接]!",
+              "@StatusErr[OTAInvalidVersion][403999007][低于当前版本]!",
+              "@StatusErr[OTAMaxModelInstall][403999008][可安装达到上限]!",
+              "@StatusErr[OTAMd5Checksum][403999006][md5校验失败]!",
+              "@StatusErr[OTAUnsupportedModel][403999004][证书不支持该模型]!",
+              "@StatusErr[OTAUploadLimited][403999005][上传文件过大]!",
+              "@StatusErr[SysConfigPermissionDenied][403999015][无系统配置权限]!",
+              "@StatusErr[UploadBusy][403999012][上传任务繁忙]!",
+              "@StatusErr[UploadDiskLimited][403999014][上传任务磁盘不足]!",
+              "@StatusErr[UploadFileSizeLimited][403999013][上传文件大小限制]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamNotExists][404999003][摄像头不存在]!",
+              "@StatusErr[DBNotFound][404999002][数据库记录不存在]!",
+              "@StatusErr[NotFoundError][404999001][NotFound]"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DBConflict][409999001][数据库冲突]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamAnalyzeReqError][500999013][分析端请求错误]!",
+              "@StatusErr[DBInternal][500999004][数据库内部错误]!",
+              "@StatusErr[EventResReadFailed][500999005][事件资源读取失败]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]",
+              "@StatusErr[LicenseFileHashFailed][500999017][证书文件哈希失败]!",
+              "@StatusErr[LicenseFileNotExist][500999016][证书文件不存在]!",
+              "@StatusErr[LicenseInstallFailed][500999015][证书安装失败]!",
+              "@StatusErr[LicenseValidateByAnalysis][500999014][证书验证失败]!",
+              "@StatusErr[OTAFetchRemoteFirmware][500999008][获取远端固件资源错误]!",
+              "@StatusErr[OTAHandleUpload][500999007][处理文件上传失败]!",
+              "@StatusErr[OTALicenseValidate][500999006][证书查询失败]!",
+              "@StatusErr[OTAPadModelInfoFailed][500999010][获取模型信息失败]!",
+              "@StatusErr[OTARemoveModelFailed][500999011][移除模型包失败]!",
+              "@StatusErr[OTASubmitFailed][500999009][升级任务提交失败]!",
+              "@StatusErr[OTAUpgradeFailed][500999012][升级失败]!",
+              "@StatusErr[UploadHandleFailed][500999018][上传文件处理失败]!",
+              "@StatusErr[UserLoginGenTokenFailed][500999002][登录验证失败]!",
+              "@StatusErr[UserLoginInvalidUsername][500999003][无效的用户名]!"
+            ]
           }
         }
       }
@@ -881,6 +1268,126 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[BadRequestError][400999001][]",
+              "@StatusErr[CamElectricFenceInvalid][400999003][电子围栏参数错误]!",
+              "@StatusErr[CamEnableSectionInvalid][400999004][场景分析时段数据错误]!",
+              "@StatusErr[CamLonLatInvalid][400999005][相机经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!",
+              "@StatusErr[OTAInvalidParam][400999002][升级请求参数非法]!",
+              "@StatusErr[SysConfigInvalid][400999007][配置项不合法]!",
+              "@StatusErr[SysConfigLonLatInvalid][400999006][设备经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!"
+            ]
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UnauthorizedError][401999001][]",
+              "@StatusErr[UserLoginInvalidCaptcha][401999002][验证码错误]!",
+              "@StatusErr[UserLoginInvalidPassword][401999004][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamConfLimited][403999011][摄像机配置达到上限]!",
+              "@StatusErr[CamSceneConfLimited][403999010][场景配置达到上限]!",
+              "@StatusErr[ForbiddenError][403999001][Forbidden]",
+              "@StatusErr[OTABusy][403999002][升级任务忙]!",
+              "@StatusErr[OTADiskLimited][403999003][磁盘不足]!",
+              "@StatusErr[OTAInvalidURL][403999009][无效链接]!",
+              "@StatusErr[OTAInvalidVersion][403999007][低于当前版本]!",
+              "@StatusErr[OTAMaxModelInstall][403999008][可安装达到上限]!",
+              "@StatusErr[OTAMd5Checksum][403999006][md5校验失败]!",
+              "@StatusErr[OTAUnsupportedModel][403999004][证书不支持该模型]!",
+              "@StatusErr[OTAUploadLimited][403999005][上传文件过大]!",
+              "@StatusErr[SysConfigPermissionDenied][403999015][无系统配置权限]!",
+              "@StatusErr[UploadBusy][403999012][上传任务繁忙]!",
+              "@StatusErr[UploadDiskLimited][403999014][上传任务磁盘不足]!",
+              "@StatusErr[UploadFileSizeLimited][403999013][上传文件大小限制]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamNotExists][404999003][摄像头不存在]!",
+              "@StatusErr[DBNotFound][404999002][数据库记录不存在]!",
+              "@StatusErr[NotFoundError][404999001][NotFound]"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DBConflict][409999001][数据库冲突]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamAnalyzeReqError][500999013][分析端请求错误]!",
+              "@StatusErr[DBInternal][500999004][数据库内部错误]!",
+              "@StatusErr[EventResReadFailed][500999005][事件资源读取失败]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]",
+              "@StatusErr[LicenseFileHashFailed][500999017][证书文件哈希失败]!",
+              "@StatusErr[LicenseFileNotExist][500999016][证书文件不存在]!",
+              "@StatusErr[LicenseInstallFailed][500999015][证书安装失败]!",
+              "@StatusErr[LicenseValidateByAnalysis][500999014][证书验证失败]!",
+              "@StatusErr[OTAFetchRemoteFirmware][500999008][获取远端固件资源错误]!",
+              "@StatusErr[OTAHandleUpload][500999007][处理文件上传失败]!",
+              "@StatusErr[OTALicenseValidate][500999006][证书查询失败]!",
+              "@StatusErr[OTAPadModelInfoFailed][500999010][获取模型信息失败]!",
+              "@StatusErr[OTARemoveModelFailed][500999011][移除模型包失败]!",
+              "@StatusErr[OTASubmitFailed][500999009][升级任务提交失败]!",
+              "@StatusErr[OTAUpgradeFailed][500999012][升级失败]!",
+              "@StatusErr[UploadHandleFailed][500999018][上传文件处理失败]!",
+              "@StatusErr[UserLoginGenTokenFailed][500999002][登录验证失败]!",
+              "@StatusErr[UserLoginInvalidUsername][500999003][无效的用户名]!"
+            ]
           }
         }
       }
@@ -914,6 +1421,126 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[BadRequestError][400999001][]",
+              "@StatusErr[CamElectricFenceInvalid][400999003][电子围栏参数错误]!",
+              "@StatusErr[CamEnableSectionInvalid][400999004][场景分析时段数据错误]!",
+              "@StatusErr[CamLonLatInvalid][400999005][相机经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!",
+              "@StatusErr[OTAInvalidParam][400999002][升级请求参数非法]!",
+              "@StatusErr[SysConfigInvalid][400999007][配置项不合法]!",
+              "@StatusErr[SysConfigLonLatInvalid][400999006][设备经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!"
+            ]
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[UnauthorizedError][401999001][]",
+              "@StatusErr[UserLoginInvalidCaptcha][401999002][验证码错误]!",
+              "@StatusErr[UserLoginInvalidPassword][401999004][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamConfLimited][403999011][摄像机配置达到上限]!",
+              "@StatusErr[CamSceneConfLimited][403999010][场景配置达到上限]!",
+              "@StatusErr[ForbiddenError][403999001][Forbidden]",
+              "@StatusErr[OTABusy][403999002][升级任务忙]!",
+              "@StatusErr[OTADiskLimited][403999003][磁盘不足]!",
+              "@StatusErr[OTAInvalidURL][403999009][无效链接]!",
+              "@StatusErr[OTAInvalidVersion][403999007][低于当前版本]!",
+              "@StatusErr[OTAMaxModelInstall][403999008][可安装达到上限]!",
+              "@StatusErr[OTAMd5Checksum][403999006][md5校验失败]!",
+              "@StatusErr[OTAUnsupportedModel][403999004][证书不支持该模型]!",
+              "@StatusErr[OTAUploadLimited][403999005][上传文件过大]!",
+              "@StatusErr[SysConfigPermissionDenied][403999015][无系统配置权限]!",
+              "@StatusErr[UploadBusy][403999012][上传任务繁忙]!",
+              "@StatusErr[UploadDiskLimited][403999014][上传任务磁盘不足]!",
+              "@StatusErr[UploadFileSizeLimited][403999013][上传文件大小限制]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamNotExists][404999003][摄像头不存在]!",
+              "@StatusErr[DBNotFound][404999002][数据库记录不存在]!",
+              "@StatusErr[NotFoundError][404999001][NotFound]"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DBConflict][409999001][数据库冲突]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamAnalyzeReqError][500999013][分析端请求错误]!",
+              "@StatusErr[DBInternal][500999004][数据库内部错误]!",
+              "@StatusErr[EventResReadFailed][500999005][事件资源读取失败]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]",
+              "@StatusErr[LicenseFileHashFailed][500999017][证书文件哈希失败]!",
+              "@StatusErr[LicenseFileNotExist][500999016][证书文件不存在]!",
+              "@StatusErr[LicenseInstallFailed][500999015][证书安装失败]!",
+              "@StatusErr[LicenseValidateByAnalysis][500999014][证书验证失败]!",
+              "@StatusErr[OTAFetchRemoteFirmware][500999008][获取远端固件资源错误]!",
+              "@StatusErr[OTAHandleUpload][500999007][处理文件上传失败]!",
+              "@StatusErr[OTALicenseValidate][500999006][证书查询失败]!",
+              "@StatusErr[OTAPadModelInfoFailed][500999010][获取模型信息失败]!",
+              "@StatusErr[OTARemoveModelFailed][500999011][移除模型包失败]!",
+              "@StatusErr[OTASubmitFailed][500999009][升级任务提交失败]!",
+              "@StatusErr[OTAUpgradeFailed][500999012][升级失败]!",
+              "@StatusErr[UploadHandleFailed][500999018][上传文件处理失败]!",
+              "@StatusErr[UserLoginGenTokenFailed][500999002][登录验证失败]!",
+              "@StatusErr[UserLoginInvalidUsername][500999003][无效的用户名]!"
+            ]
           }
         }
       }
@@ -963,6 +1590,25 @@
           "204": {
             "description": ""
           },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[BadRequestError][400999001][]",
+              "@StatusErr[CamElectricFenceInvalid][400999003][电子围栏参数错误]!",
+              "@StatusErr[CamEnableSectionInvalid][400999004][场景分析时段数据错误]!",
+              "@StatusErr[CamLonLatInvalid][400999005][相机经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!",
+              "@StatusErr[OTAInvalidParam][400999002][升级请求参数非法]!",
+              "@StatusErr[SysConfigInvalid][400999007][配置项不合法]!",
+              "@StatusErr[SysConfigLonLatInvalid][400999006][设备经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!"
+            ]
+          },
           "401": {
             "description": "",
             "content": {
@@ -973,7 +1619,96 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[UnauthorizedError][401999001][]",
+              "@StatusErr[UserLoginInvalidCaptcha][401999002][验证码错误]!",
+              "@StatusErr[UserLoginInvalidPassword][401999004][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamConfLimited][403999011][摄像机配置达到上限]!",
+              "@StatusErr[CamSceneConfLimited][403999010][场景配置达到上限]!",
+              "@StatusErr[ForbiddenError][403999001][Forbidden]",
+              "@StatusErr[OTABusy][403999002][升级任务忙]!",
+              "@StatusErr[OTADiskLimited][403999003][磁盘不足]!",
+              "@StatusErr[OTAInvalidURL][403999009][无效链接]!",
+              "@StatusErr[OTAInvalidVersion][403999007][低于当前版本]!",
+              "@StatusErr[OTAMaxModelInstall][403999008][可安装达到上限]!",
+              "@StatusErr[OTAMd5Checksum][403999006][md5校验失败]!",
+              "@StatusErr[OTAUnsupportedModel][403999004][证书不支持该模型]!",
+              "@StatusErr[OTAUploadLimited][403999005][上传文件过大]!",
+              "@StatusErr[SysConfigPermissionDenied][403999015][无系统配置权限]!",
+              "@StatusErr[UploadBusy][403999012][上传任务繁忙]!",
+              "@StatusErr[UploadDiskLimited][403999014][上传任务磁盘不足]!",
+              "@StatusErr[UploadFileSizeLimited][403999013][上传文件大小限制]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamNotExists][404999003][摄像头不存在]!",
+              "@StatusErr[DBNotFound][404999002][数据库记录不存在]!",
+              "@StatusErr[NotFoundError][404999001][NotFound]"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DBConflict][409999001][数据库冲突]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamAnalyzeReqError][500999013][分析端请求错误]!",
+              "@StatusErr[DBInternal][500999004][数据库内部错误]!",
+              "@StatusErr[EventResReadFailed][500999005][事件资源读取失败]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]",
+              "@StatusErr[LicenseFileHashFailed][500999017][证书文件哈希失败]!",
+              "@StatusErr[LicenseFileNotExist][500999016][证书文件不存在]!",
+              "@StatusErr[LicenseInstallFailed][500999015][证书安装失败]!",
+              "@StatusErr[LicenseValidateByAnalysis][500999014][证书验证失败]!",
+              "@StatusErr[OTAFetchRemoteFirmware][500999008][获取远端固件资源错误]!",
+              "@StatusErr[OTAHandleUpload][500999007][处理文件上传失败]!",
+              "@StatusErr[OTALicenseValidate][500999006][证书查询失败]!",
+              "@StatusErr[OTAPadModelInfoFailed][500999010][获取模型信息失败]!",
+              "@StatusErr[OTARemoveModelFailed][500999011][移除模型包失败]!",
+              "@StatusErr[OTASubmitFailed][500999009][升级任务提交失败]!",
+              "@StatusErr[OTAUpgradeFailed][500999012][升级失败]!",
+              "@StatusErr[UploadHandleFailed][500999018][上传文件处理失败]!",
+              "@StatusErr[UserLoginGenTokenFailed][500999002][登录验证失败]!",
+              "@StatusErr[UserLoginInvalidUsername][500999003][无效的用户名]!"
             ]
           }
         }
@@ -1039,6 +1774,25 @@
           "204": {
             "description": ""
           },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[BadRequestError][400999001][]",
+              "@StatusErr[CamElectricFenceInvalid][400999003][电子围栏参数错误]!",
+              "@StatusErr[CamEnableSectionInvalid][400999004][场景分析时段数据错误]!",
+              "@StatusErr[CamLonLatInvalid][400999005][相机经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!",
+              "@StatusErr[OTAInvalidParam][400999002][升级请求参数非法]!",
+              "@StatusErr[SysConfigInvalid][400999007][配置项不合法]!",
+              "@StatusErr[SysConfigLonLatInvalid][400999006][设备经纬度数据错误 纬度:[-90,90];经度:[-180,180]]!"
+            ]
+          },
           "401": {
             "description": "",
             "content": {
@@ -1049,7 +1803,96 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[UnauthorizedError][401999001][]",
+              "@StatusErr[UserLoginInvalidCaptcha][401999002][验证码错误]!",
+              "@StatusErr[UserLoginInvalidPassword][401999004][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamConfLimited][403999011][摄像机配置达到上限]!",
+              "@StatusErr[CamSceneConfLimited][403999010][场景配置达到上限]!",
+              "@StatusErr[ForbiddenError][403999001][Forbidden]",
+              "@StatusErr[OTABusy][403999002][升级任务忙]!",
+              "@StatusErr[OTADiskLimited][403999003][磁盘不足]!",
+              "@StatusErr[OTAInvalidURL][403999009][无效链接]!",
+              "@StatusErr[OTAInvalidVersion][403999007][低于当前版本]!",
+              "@StatusErr[OTAMaxModelInstall][403999008][可安装达到上限]!",
+              "@StatusErr[OTAMd5Checksum][403999006][md5校验失败]!",
+              "@StatusErr[OTAUnsupportedModel][403999004][证书不支持该模型]!",
+              "@StatusErr[OTAUploadLimited][403999005][上传文件过大]!",
+              "@StatusErr[SysConfigPermissionDenied][403999015][无系统配置权限]!",
+              "@StatusErr[UploadBusy][403999012][上传任务繁忙]!",
+              "@StatusErr[UploadDiskLimited][403999014][上传任务磁盘不足]!",
+              "@StatusErr[UploadFileSizeLimited][403999013][上传文件大小限制]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamNotExists][404999003][摄像头不存在]!",
+              "@StatusErr[DBNotFound][404999002][数据库记录不存在]!",
+              "@StatusErr[NotFoundError][404999001][NotFound]"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DBConflict][409999001][数据库冲突]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[CamAnalyzeReqError][500999013][分析端请求错误]!",
+              "@StatusErr[DBInternal][500999004][数据库内部错误]!",
+              "@StatusErr[EventResReadFailed][500999005][事件资源读取失败]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]",
+              "@StatusErr[LicenseFileHashFailed][500999017][证书文件哈希失败]!",
+              "@StatusErr[LicenseFileNotExist][500999016][证书文件不存在]!",
+              "@StatusErr[LicenseInstallFailed][500999015][证书安装失败]!",
+              "@StatusErr[LicenseValidateByAnalysis][500999014][证书验证失败]!",
+              "@StatusErr[OTAFetchRemoteFirmware][500999008][获取远端固件资源错误]!",
+              "@StatusErr[OTAHandleUpload][500999007][处理文件上传失败]!",
+              "@StatusErr[OTALicenseValidate][500999006][证书查询失败]!",
+              "@StatusErr[OTAPadModelInfoFailed][500999010][获取模型信息失败]!",
+              "@StatusErr[OTARemoveModelFailed][500999011][移除模型包失败]!",
+              "@StatusErr[OTASubmitFailed][500999009][升级任务提交失败]!",
+              "@StatusErr[OTAUpgradeFailed][500999012][升级失败]!",
+              "@StatusErr[UploadHandleFailed][500999018][上传文件处理失败]!",
+              "@StatusErr[UserLoginGenTokenFailed][500999002][登录验证失败]!",
+              "@StatusErr[UserLoginInvalidUsername][500999003][无效的用户名]!"
             ]
           }
         }
@@ -1100,7 +1943,52 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
               "@StatusErr[UnmatchedPassword][401999005][密码错误]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
             ]
           },
           "500": {
@@ -1113,13 +2001,164 @@
               }
             },
             "x-status-errors": [
-              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!"
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
       }
     },
     "/item_manager/v0/res": {
+      "get": {
+        "tags": [
+          "apis/res"
+        ],
+        "summary": "资源列表",
+        "operationId": "ListResources",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "Authorization",
+              "x-tag-name": "Authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "x-go-field-name": "AuthorizationInQuery",
+              "x-tag-name": "authorization,omitempty",
+              "x-tag-validate": "@string[1,]"
+            }
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": 1,
+              "default": "1",
+              "x-go-field-name": "NO",
+              "x-tag-name": "pageNo,omitempty",
+              "x-tag-validate": "@int64[1,]"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 9223372036854776000,
+              "minimum": -1,
+              "default": "10",
+              "x-go-field-name": "Size",
+              "x-tag-name": "pageSize,omitempty",
+              "x-tag-validate": "@int64[-1,]"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModulesResListRsp"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
+              "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
+            ]
+          }
+        }
+      },
       "post": {
         "tags": [
           "apis/res"
@@ -1189,7 +2228,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -1256,7 +2358,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -1328,7 +2493,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -1438,7 +2666,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -1511,7 +2802,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -1630,8 +2984,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
               "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -1692,7 +3108,70 @@
               }
             },
             "x-status-errors": [
+              "@StatusErr[InvalidToken][401999002][登录状态已失效]!",
+              "@StatusErr[TokenExpired][401999003][登录状态已失效]!",
+              "@StatusErr[TokenNotFoundOrExpired][401999004][登录状态已失效]!",
+              "@StatusErr[Unauthorized][401999001][Unauthorized]!",
+              "@StatusErr[UnmatchedPassword][401999005][密码错误]!",
               "@StatusErr[UserLoginInvalidToken][401999003][登录已过期]!"
+            ]
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[FirmwareReleased][403999002][固件多次发布]!",
+              "@StatusErr[Forbidden][403999001][Forbidden]!",
+              "@StatusErr[InvalidVersion][403999003][版本号不合法]!"
+            ]
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[NotFound][404999001][NotFound]!"
+            ]
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[Conflict][409999001][Conflict]!"
+            ]
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GithubComGoCourierStatuserrorStatusErr"
+                }
+              }
+            },
+            "x-status-errors": [
+              "@StatusErr[DatabaseInternalServerError][500999002][查询数据库失败]!",
+              "@StatusErr[GenerateTokenError][500999003][Token生成失败]!",
+              "@StatusErr[GetDownloadLink][500999005][获取下载链接出错]!",
+              "@StatusErr[InternalServerError][500999001][InternalServerError]!",
+              "@StatusErr[UploadStorage][500999004][存储出错]!"
             ]
           }
         }
@@ -2553,6 +4032,31 @@
         ],
         "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/item.ListRsp",
         "x-id": "GithubComSaitofunItemsPkgModulesItemListRsp"
+      },
+      "GithubComSaitofunItemsPkgModulesResListRsp": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GithubComSaitofunItemsPkgModelsRes"
+            },
+            "x-go-field-name": "Data",
+            "x-tag-json": "data"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "x-go-field-name": "Total",
+            "x-tag-json": "total"
+          }
+        },
+        "required": [
+          "data",
+          "total"
+        ],
+        "x-go-vendor-type": "github.com/saitofun/items/pkg/modules/res.ListRsp",
+        "x-id": "GithubComSaitofunItemsPkgModulesResListRsp"
       },
       "GithubComSaitofunItemsPkgModulesResUploadReq": {
         "type": "object",
