@@ -101,7 +101,7 @@ func (c *Ctrl) RevokeRelease(id depends.SFID) error {
 			pkg.FieldKeyReleaseAt(): 0,
 			pkg.FieldKeyUpdatedAt(): depends.Timestamp(time.Now()),
 		})...))
-	return err
+	return errors.DBError(err)
 }
 
 func (c *Ctrl) ListFirmware(r *ListReq) (*ListRsp, error) {

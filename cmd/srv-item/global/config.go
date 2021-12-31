@@ -21,9 +21,10 @@ var (
 	ResPath     string
 	MinioClient confminioclient.MinioClient
 
-	App       *appinfo.AppCtx
-	MinioHost string
-	iface     string
+	App          *appinfo.AppCtx
+	MinioHost    string
+	MinioFwdPort string
+	iface        string
 )
 
 func init() {
@@ -31,14 +32,16 @@ func init() {
 		Log          *conflogger.Log
 		Server       *confhttp.Server
 		DB           *confpostgres.Postgres
-		ResPath      *string `env:""`
 		MinioClient  *confminioclient.MinioClient
+		ResPath      *string `env:""`
+		MinioFwdPort *string `env:""`
 		DefaultIface *string `env:""`
 	}{
 		Server:       server,
 		DB:           database,
 		ResPath:      &ResPath,
 		MinioClient:  &MinioClient,
+		MinioFwdPort: &MinioFwdPort,
 		DefaultIface: &iface,
 	}
 
@@ -67,7 +70,7 @@ func init() {
 				panic("addrs[0]")
 			}
 			if va, ok := addrs[0].(*net.IPNet); ok {
-				MinioHost = va.IP.String() + ":9000"
+				MinioHost = va.IP.String() + ":" + MinioFwdPort
 			} else {
 				panic("not IP net")
 			}

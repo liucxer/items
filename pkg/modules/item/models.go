@@ -42,6 +42,17 @@ func (v *ListReq) Additions() builder.Additions {
 }
 
 type ListRsp struct {
-	Data  []models.Item `json:"data"`
-	Total int           `json:"total"`
+	Data  []ListData `json:"data"`
+	Total int        `json:"total"`
+}
+
+type ResData struct {
+	models.ResBase
+	models.ResExt
+}
+
+type ListData struct {
+	models.Item
+	Image  *ResData `json:"image,omitempty"`
+	Attach *ResData `json:"attach,omitempty"`
 }

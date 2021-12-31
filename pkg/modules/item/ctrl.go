@@ -8,6 +8,7 @@ import (
 	"github.com/saitofun/items/cmd/srv-item/global"
 	"github.com/saitofun/items/pkg/depends"
 	"github.com/saitofun/items/pkg/models"
+	"github.com/saitofun/items/pkg/modules/res"
 )
 
 type Ctrl struct {
@@ -58,14 +59,41 @@ func (c *Ctrl) ListByCode(code string) (*ListRsp, error) {
 		err error
 		rcd = &models.Item{ItemBase: models.ItemBase{Code: code}}
 		rsp = &ListRsp{}
+		lst []models.Item
 	)
-	rsp.Data, err = rcd.List(c.dbe, builder.And(
+	lst, err = rcd.List(c.dbe, builder.And(
 		rcd.FieldCode().Eq(code),
 		rcd.FieldParentCode().Eq(code),
 	), nil)
 	if err != nil {
 		return nil, errors.DBError(err)
 	}
+
+	for i := range lst {
+		data := ListData{Item: lst[i]}
+		if lst[i].AttachResID != 0 {
+			attach, err := res.Controller.GetByID(lst[i].AttachResID)
+			if err != nil {
+				return nil, err
+			}
+			data.Attach = &ResData{
+				ResBase: attach.ResBase,
+				ResExt:  attach.ResExt,
+			}
+		}
+		if lst[i].ImageResID != 0 {
+			image, err := res.Controller.GetByID(lst[i].ImageResID)
+			if err != nil {
+				return nil, err
+			}
+			data.Image = &ResData{
+				ResBase: image.ResBase,
+				ResExt:  image.ResExt,
+			}
+		}
+		rsp.Data = append(rsp.Data, data)
+	}
+
 	rsp.Total = len(rsp.Data)
 	return rsp, nil
 }
@@ -75,14 +103,39 @@ func (c *Ctrl) List(r *ListReq) (*ListRsp, error) {
 		err error
 		rcd = &models.Item{}
 		rsp = &ListRsp{}
+		lst []models.Item
 	)
-	rsp.Data, err = rcd.List(c.dbe, r.Condition(), r.Additions()...)
+	lst, err = rcd.List(c.dbe, r.Condition(), r.Additions()...)
 	if err != nil {
 		return nil, errors.DBError(err)
 	}
 	rsp.Total, err = rcd.Count(c.dbe, r.Condition())
 	if err != nil {
 		return nil, errors.DBError(err)
+	}
+	for i := range lst {
+		data := ListData{Item: lst[i]}
+		if lst[i].AttachResID != 0 {
+			attach, err := res.Controller.GetByID(lst[i].AttachResID)
+			if err != nil {
+				return nil, err
+			}
+			data.Attach = &ResData{
+				ResBase: attach.ResBase,
+				ResExt:  attach.ResExt,
+			}
+		}
+		if lst[i].ImageResID != 0 {
+			image, err := res.Controller.GetByID(lst[i].ImageResID)
+			if err != nil {
+				return nil, err
+			}
+			data.Image = &ResData{
+				ResBase: image.ResBase,
+				ResExt:  image.ResExt,
+			}
+		}
+		rsp.Data = append(rsp.Data, data)
 	}
 	return rsp, nil
 }
