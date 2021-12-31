@@ -20,6 +20,7 @@ spec:
     SRV_ITEM__MinioClient_Location: ${{ SRV_ITEM__MinioClient_Location }}
     SRV_ITEM__MinioClient_SecretKey: ${{ SRV_ITEM__MinioClient_SecretKey }}
     SRV_ITEM__MinioClient_UseSSL: ${{ SRV_ITEM__MinioClient_UseSSL }}
+    SRV_ITEM__MinioFwdPort: ${{ SRV_ITEM__MinioFwdPort }}
     SRV_ITEM__ResPath: ${{ SRV_ITEM__ResPath }}
     SRV_ITEM__Server_Debug: ${{ SRV_ITEM__Server_Debug }}
   image: ${{ PROJECT_IMAGE }}
