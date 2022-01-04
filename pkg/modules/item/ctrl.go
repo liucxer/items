@@ -140,13 +140,35 @@ func (c *Ctrl) List(r *ListReq) (*ListRsp, error) {
 	return rsp, nil
 }
 
-func (c *Ctrl) GetByCode(code string) (*models.Item, error) {
+func (c *Ctrl) GetByCode(code string) (*ListData, error) {
 	rcd := &models.Item{ItemBase: models.ItemBase{Code: code}}
+	ret := &ListData{}
 	err := rcd.FetchByCode(c.dbe)
 	if err != nil {
 		return nil, errors.DBError(err)
 	}
-	return rcd, nil
+	ret.Item = *rcd
+	if rcd.AttachResID != 0 {
+		attach, err := res.Controller.GetByID(rcd.AttachResID)
+		if err != nil {
+			return nil, err
+		}
+		ret.Attach = &ResData{
+			ResBase: attach.ResBase,
+			ResExt:  attach.ResExt,
+		}
+	}
+	if rcd.ImageResID != 0 {
+		image, err := res.Controller.GetByID(rcd.ImageResID)
+		if err != nil {
+			return nil, err
+		}
+		ret.Image = &ResData{
+			ResBase: image.ResBase,
+			ResExt:  image.ResExt,
+		}
+	}
+	return ret, nil
 }
 
 func (c *Ctrl) DeleteByCode(code string) error {
