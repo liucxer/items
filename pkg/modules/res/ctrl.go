@@ -32,7 +32,7 @@ func Upload(file *multipart.FileHeader, dst string, limit int64) (filename strin
 		filesize = int64(0)
 	)
 
-	filename = path.Join(global.ResPath, uuid.New().String()+"-"+dst)
+	filename = path.Join(global.ResPath, uuid.New().String())
 
 	if !IsPathExists(dst) {
 		if err = os.Mkdir(dst, 0777); err != nil {
