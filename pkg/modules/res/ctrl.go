@@ -97,7 +97,7 @@ func IsPathExists(path string) bool {
 }
 
 func (c *Ctrl) Upload(r *UploadReq) (*models.Res, error) {
-	filename, err := Upload(r.File, r.Info.Filename, 100*1024*1024)
+	filename, err := Upload(r.File, global.ResPath, 100*1024*1024)
 	if err != nil {
 		return nil, errors.InternalServerError.WithDes(err)
 	}

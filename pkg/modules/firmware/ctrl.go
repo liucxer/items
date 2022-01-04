@@ -179,20 +179,22 @@ func (c *Ctrl) GetLatest(cur *models.FirmwareVersion) (*LatestFirmware, error) {
 	}
 
 	v := ret[0]
-	if v.Major < cur.Major {
-		return nil, nil
-	}
-	if v.Minor < cur.Minor {
-		return nil, nil
-	}
-	if v.Patch < cur.Patch {
-		return nil, nil
-	}
-	if v.Major == cur.Major && v.Minor == v.Minor && v.Patch == v.Patch {
-		return nil, nil
+	if cur != nil {
+		// if v.Major < cur.Major {
+		// 	return nil, nil
+		// }
+		// if v.Minor < cur.Minor {
+		// 	return nil, nil
+		// }
+		// if v.Patch < cur.Patch {
+		// 	return nil, nil
+		// }
+		// if v.Major == cur.Major && v.Minor == v.Minor && v.Patch == v.Patch {
+		// 	return nil, nil
+		// }
 	}
 
-	resource, err := res.Controller.GetByID(ret[0].ResID)
+	resource, err := res.Controller.GetByID(v.ResID)
 	if err != nil {
 		return nil, err
 	}

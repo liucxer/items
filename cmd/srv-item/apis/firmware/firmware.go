@@ -34,9 +34,15 @@ type GetLatestFirmware struct {
 }
 
 func (r *GetLatestFirmware) Output(ctx context.Context) (interface{}, error) {
-	version, err := models.ParseFirmwareVersion(r.Version)
-	if err != nil {
-		return nil, err
+	var (
+		version *models.FirmwareVersion
+		err     error
+	)
+	if r.Version != "" {
+		version, err = models.ParseFirmwareVersion(r.Version)
+		if err != nil {
+			return nil, err
+		}
 	}
 	return firmware.Controller.GetLatest(version)
 }
