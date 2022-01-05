@@ -40,6 +40,7 @@ func (c *Ctrl) UpdateItem(code string, r *models.ItemBase) error {
 	tab := c.dbe.T(old)
 	expr := builder.Update(tab).Where(old.FieldCode().Eq(code)).Set(
 		tab.AssignmentsByFieldValues(builder.FieldValues{
+			old.FieldKeyCode():        r.Code,
 			old.FieldKeyParentCode():  r.ParentCode,
 			old.FieldKeyName():        r.Name,
 			old.FieldKeyAlphabetZH():  r.AlphabetZH,
