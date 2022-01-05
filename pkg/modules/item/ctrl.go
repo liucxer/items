@@ -1,6 +1,8 @@
 package item
 
 import (
+	"time"
+
 	"git.querycap.com/ss/srv-aisys/constants/errors"
 	"github.com/go-courier/metax"
 	"github.com/go-courier/sqlx/v2"
@@ -50,6 +52,7 @@ func (c *Ctrl) UpdateItem(code string, r *models.ItemBase) error {
 			old.FieldKeyLink():        r.Link,
 			old.FieldKeyAttachResID(): r.AttachResID,
 			old.FieldKeyHasSub():      r.HasSub,
+			old.FieldKeyUpdatedAt():   depends.Timestamp(time.Now()),
 		})...)
 	_, err := c.dbe.ExecExpr(expr)
 	return errors.DBError(err)
